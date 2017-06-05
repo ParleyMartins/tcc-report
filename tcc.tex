@@ -2,45 +2,43 @@
 \input{fixos/comandos}
 \usepackage{fixos/customizacoes}
 
-\input{editaveis/informacoes}
+\input{editaveis/pre_texto/informacoes}
 \input{fixos/informacoes}
 \input{fixos/setup}
 
 \begin{document}
 
-\frenchspacing 
+\frenchspacing
 \imprimircapa
 \imprimirfolhaderosto*
 
 \input{fixos/fichaCatalografica}
-\input{editaveis/errata}
+\input{editaveis/pre_texto/errata}
 \input{fixos/folhaDeAprovacao}
-\input{editaveis/dedicatoria}
-\input{editaveis/agradecimentos}
-\input{editaveis/epigrafe}
-\input{editaveis/resumo}
-\input{editaveis/abstract}
+\input{editaveis/pre_texto/dedicatoria}
+\input{editaveis/pre_texto/agradecimentos}
+\input{editaveis/pre_texto/epigrafe}
+\input{editaveis/pre_texto/resumo}
+\input{editaveis/pre_texto/abstract}
 \input{fixos/listasAutomaticas}
-\input{editaveis/abreviaturas}
-\input{editaveis/simbolos}
+\input{editaveis/pre_texto/abreviaturas}
+\input{editaveis/pre_texto/simbolos}
 \input{fixos/indiceAutomatico}
 
 \textual
 
-\input{editaveis/introducao}
-\input{editaveis/aspectosgerais}
-\input{editaveis/consideracoes}
-\input{editaveis/textoepostexto}
-\input{editaveis/elementosdotexto}
-\input{editaveis/elementosdopostexto}
+\input{editaveis/texto/introducao}
+\input{editaveis/texto/fundamentacao_teorica}
+\input{editaveis/texto/metodologia}
+\input{editaveis/texto/resultados}
 
-\bookmarksetup{startatroot} 
+\bookmarksetup{startatroot}
 
 \postextual
 
-\bibliography{bibliografia} 
-\input{editaveis/apendices}
-\input{editaveis/anexos}
+\bibliography{bibliografia}
+\input{editaveis/pos_texto/apendices}
+\input{editaveis/pos_texto/anexos}
 \printindex
 
 \end{document}
