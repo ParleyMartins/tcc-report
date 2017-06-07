@@ -1,44 +1,30 @@
 \chapter[Methodology]{Methodology}
 \section[Methodology]{Methodology}
 
-This section explains what was and will be done within the duration of the
-whole project. It has the main goal of creating a platform with all the games
-developed in the university's courses (related to games). The games that will
-be available must have all their assets and required libraries in a single
-package that runs in Linux distributions without the need of installing any other package;
-they also must have a graphical installer for users without technical
-knowledge.
+This section explains what was and will be done within the duration of the whole project. It has the main goal of creating a platform with all the games developed in the university's courses (related to games). The games that will be available must have all their assets and required libraries in a single package that runs in Linux distributions without the need of installing any other package; they also must have a graphical installer for users without technical knowledge.
 
-In order to achieve this goal, the games developed in this Faculty will be cataloged and cloned to a main GitHub organization (whenever possible).
-It will be created, then, a packaging system for two of them, one for games
-using SDL 1 and the other for SDL 2. The platform itself will be developed while all the other activities take place.
+In order to achieve this goal, the games developed in this Faculty will be cataloged and cloned to a main GitHub organization (whenever possible). It will be created, then, a packaging system for two of them, one for games using SDL 1 and the other for SDL 2. The platform itself will be developed while all the other activities take place.
 
-After that, a script will be generated to replicate the packaging system to all
-of the other games, making the necessary adjustments along the way. The games
-will be deployed to the website with all of their information and available
-packages.
+After that, a script will be generated to replicate the packaging system to all of the other games, making the necessary adjustments along the way. The games will be deployed to the website with all of their information and available packages.
 
 The packaging script will be integrated and adapted to the platform, so that any student who posts a game will have the packages generated automatically.
 
 \section[Task Division]{Task Division}
 
-Because this is a shared work among courses, teachers and students, a special
-task division will be made to accomplish the established purpose.
+Because this is a shared work among courses, teachers and students, a special task division will be made to accomplish the established purpose.
 
-Professor Edson and Mr. Faria were responsible for first cataloging the existing games. They will remain as helpers in the packaging system and 'clients'
-for the team developing the website.
+Professor Edson and Mr. Faria were responsible for first cataloging the existing games. They will remain as helpers in the packaging system and 'clients' for the team developing the website.
 
-The team \textit{Plataforma de Jogos UnB} from the courses 'Software
-Development Methods' and 'Management of Portfolios and Projects' is
-in charge of creating the actual website with some of the features desired.
+The team \textit{Plataforma de Jogos UnB} from the courses 'Software Development Methods' and 'Management of Portfolios and Projects' is in charge of creating the actual website with some of the features desired.
 
-The script creation and application on the games and its integration with the
-platform will be my responsibility.
+The script creation and application on the games and its integration with the platform will be my responsibility.
 
 
 \section[Technology Choice]{Technology Choice}
 
 CMake is the chosen framework for generating the packages. It's suppose to help developers creating applications that run in several platforms, like Linux, Mac and Windows. It offers a lot options for that, like cross compilation and compilation directed to each of them.
+
+For the graphical installer, Qt Installer Framework, has been selected. It is easy to use and offer a nice GUI with all the necessary steps for installing a package, like license agreement, path choice.
 
 For the website development, Django  was picked because of the previous knowledge the group had with it. To make the front end of the application, Facebook's React was chosen for the flexibility it gives to the user interface. They are both very scalable and have a big support on the community.
 
