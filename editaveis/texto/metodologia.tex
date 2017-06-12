@@ -1,69 +1,94 @@
 \chapter[Methodology]{Methodology}
-\section[Methodology]{Methodology}
+This chapter explains what was and will be done within the duration of the whole project.
+% \section[Methodology]{Methodology}
 
-This section explains what was and will be done within the duration of the whole project. It has the main goal of creating a platform with all the games developed in the university's courses (related to games). The games that will be available must have all their assets and required libraries in a single package that runs in Linux distributions without the need of installing any other package; they also must have a graphical installer for users without technical knowledge.
+It has the main goal of creating a platform with all the games developed in the university's courses related to games. The games that will be available must have all their assets and required libraries in a single package that runs in Linux distributions without the need of installing any other package; they also must have a graphical installer for users without technical knowledge.
 
-In order to achieve this goal, the games developed in this Faculty will be cataloged and cloned to a main GitHub organization (whenever possible). It will be created, then, a packaging system for two of them, one for games using SDL 1 and the other for SDL 2. The platform itself will be developed while all the other activities take place.
+In order to achieve this goal, the games developed will be cataloged and cloned to a main GitHub organization (whenever possible). Two scripts will be created then, one to build games using SDL 1 and the other for SDL 2. The platform itself will be developed while all the other activities take place.
 
-After that, a script will be generated to replicate the packaging system to all of the other games, making the necessary adjustments along the way. The games will be deployed to the website with all of their information and available packages.
+After that, a script will be generated to replicate the packaging system to all of the other games, making the necessary adjustments along the way. The games will be deployed to the website with all of their information and available installers.
 
-The packaging script will be integrated and adapted to the platform, so that any student who posts a game will have the packages generated automatically.
+The packaging scripts will be integrated and adapted to the platform, so that any student who posts a game will have the installers generated automatically.
 
 \section[Task Division]{Task Division}
 
+ADD DIAGRAM!!
+
 Because this is a shared work among courses, teachers and students, a special task division will be made to accomplish the established purpose.
 
-Professor Edson and Mr. Faria were responsible for first cataloging the existing games. They will remain as helpers in the packaging system and 'clients' for the team developing the website.
+Professor Edson and Mr. Faria were responsible for first cataloging the existing games. They will remain as helpers in the packaging system and main stakeholders for the team developing the website.
 
 The team \textit{Plataforma de Jogos UnB} from the courses 'Software Development Methods' and 'Management of Portfolios and Projects' is in charge of creating the actual website with some of the features desired.
 
-The script creation and application on the games and its integration with the platform will be my responsibility.
+The script creation and application on the games, its integration with the platform, as well as the evolution and maintenance of the platform after the courses are finished will be my responsibility.
+
+
+\section[Game Gathering]{Game Gathering}
+
+The games selected for this first part of the project were the ones developed in this Faculty throughout the last semesters, since the course 'Introduction to Electronic Games' has been created here in the Gama campus.
+
+Because this work is being held most at FGA, and all the games developed here are compiled and run on Linux distributions, these were selected as first games for the platform. The proximity with the students who created those games is another reason.
+
+Professor Edson, that was ministering the course until last year, and Mr. Matheus Faria, the new teacher, first contacted the students and asked them to post their codes to GitHub. They cloned them into the \href{https://github.com/fgagamedev/}{fgagamedev} GitHub organization.
+
+After that, I was responsible for checking the status of the games, gathering information such as which of them compiled, which SDL version they used, which ones had licenses. I was also in charge of getting the licenses for the repositories that didn't have one. The table \ref{tab:first_games} shows this.
+
+\begin{table}[h!]
+\centering
+\caption{Status of the selected games}
+\label{tab:first_games}
+\rowcolors{1}{gray!10}{white}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Name} & \textbf{Source?} & \textbf{License?} & \textbf{SDL} & \textbf{Compiles?} \\ \hline
+Deadly Wish & y & n & 2 & n \\ \hline
+Strife of Mythology & y & n & 2 & y \\ \hline
+Travelling Will & y & n & 2 & y \\ \hline
+7 Keys & y & MIT & 2 & n \\ \hline
+Babel & y & GPL 2 & 2 & y \\ \hline
+Terracota & y & MIT & 2 & n \\ \hline
+Dauphine & y & n & 2 & n \\ \hline
+Imagina na Copa & y & n & 2 & y \\ \hline
+Kays Against the World & y & n & 2 & y \\ \hline
+Ankhnowledge & y & GPL 2 & 1 & y \\ \hline
+The Last World War & n & - & - & - \\ \hline
+Post War & y & n & 1 & y \\ \hline
+War of the nets & y & GPL 2 & 2 & y \\ \hline
+Jack the Janitor & y & GPL 3 & 1 & y \\ \hline
+Drawing Attack & n & - & - & - \\ \hline
+Earth Attacks & n & - & - & - \\ \hline
+Emperor vs Aliens & y & n & 1 & y \\ \hline
+Ninja Siege & y & GPL 2 & 1 & y \\ \hline
+Space monkeys & y & GPL 2 & 1 & n \\ \hline
+Tacape & n & - & - & - \\ \hline
+\end{tabular}
+\end{table}
+
+
+\section[Versioning]{Versioning}
+
+
+\section[Packaging]{Packaging}
+
+VM
+
+EST
+
+Workflow
+
+\section[Platform]{Platform}
 
 
 \section[Technology Choice]{Technology Choice}
 
-CMake is the chosen framework for generating the packages. It's suppose to help developers creating applications that run in several platforms, like Linux, Mac and Windows. It offers a lot options for that, like cross compilation and compilation directed to each of them.
+CMake is the chosen framework for generating the packages. It's suppose to help developers creating applications that run in several platforms, like Linux, Mac and Windows. It offers a lot options for that, like cross compilation and compilation directed to each of them. It is distributed under OSI-approved BSD 3-clause License and the minimum required version is 2.8.
 
-For the graphical installer, Qt Installer Framework, has been selected. It is easy to use and offer a nice GUI with all the necessary steps for installing a package, like license agreement, path choice.
+For the graphical installer, Qt Installer Framework, has been selected. It is easy to use and offer a nice GUI with all the necessary steps for installing a package, like license agreement and path choice. This framework is distributed under LGPLv3 license and the version being used is 2.0.5.
 
-For the website development, Django  was picked because of the previous knowledge the group had with it. To make the front end of the application, Facebook's React was chosen for the flexibility it gives to the user interface. They are both very scalable and have a big support on the community.
+For the website development, Django was picked because of the previous knowledge the group had with it. To make the front end of the application, Facebook's React was chosen for the flexibility it gives to the user interface. They are both very scalable, have a big support on the community and are released under the BSD 3-clause license. The versions being used are the last ones at the beginning of the project, namely 1.11.1, for Django, and 15.5.4, for React.
 
-Python is the language for the packaging script because it must integrate with the Django webapp and its powerful easy to use API. It will also be the language for any other needed scripts.
+Python is the language for the packaging script because it must integrate with the Django webapp and its powerful easy to use API. It will also be the language for any other needed scripts. The least required version is 3.4, and it's licensed under an OSI-approved open source license.
 
+To develop the scripts, a virtual machine running Debian Jessie was used. The VM
 
-\section[Schedule]{Schedule}
-
-The following activities will be developed in the remaining time of the project. They are summarized in the Table \ref{tab:schedule}
-
-\begin{itemize}
-\item \textbf{Literature Review} - Review what the literature has on packaging, CMake, game development.
-\item \textbf{Add Lua support} - Some of the games have lua as a dependency library that also needs to go in the final package..
-\item \textbf{Add other distros support} - Generate at least .rpm packages.
-\item \textbf{Add MacOS support} - Create install packages for Mac (Apple Systems).
-\item \textbf{Add Windows support} - Make a installer (.exe) to run on Windows 10 (maybe with some backwards compatibility if possible).
-\item \textbf{Integrate to website} - Run the scripts though the website, with GitHub integration.
-\item \textbf{Add Darcy's games} - Look for games developed in Darcy Ribeiro campus and test the script on them.
-\item \textbf{Code refactoring} - Integrate scripts (SDL 1 and 2), make it more generic and efficient.
-\item \textbf{Final adjustments} - Make minor improvements and fixes.
-\item \textbf{Write Report} - Report progress and results.
-\end{itemize}
-
-\begin{table}[h!]
-\centering
-\caption{Project Schedule}
-\label{tab:schedule}
-\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
-\hline
-\textbf{Task} & \multicolumn{1}{l|}{\textbf{Apr}} & \multicolumn{1}{l|}{\textbf{May}} & \multicolumn{1}{l|}{\textbf{Jun}} & \multicolumn{1}{l|}{\textbf{Jul}} & \multicolumn{1}{l|}{\textbf{Ago}} & \multicolumn{1}{l|}{\textbf{Sep}} & \multicolumn{1}{l|}{\textbf{Oct}} & \multicolumn{1}{l|}{\textbf{Nov}} & \multicolumn{1}{l|}{\textbf{Dec}} \\ \hline
-Literature Review & x & x & x & x & x &  &  &  &  \\ \hline
-Add Lua support &  &  &  & x & x &  &  &  &  \\ \hline
-Add other distros support &  &  &  & x & x &  &  &  &  \\ \hline
-Add MacOS support &  &  &  &  & x & x &  &  &  \\ \hline
-Add Windows support &  &  &  &  & x & x &  &  &  \\ \hline
-Integrate to website &  &  &  &  & x & x &  &  &  \\ \hline
-Add Darcy's games &  &  &  &  &  & x & x &  &  \\ \hline
-Code refactoring &  &  &  &  &  &  & x & x &  \\ \hline
-Final adjustments &  &  &  &  &  &  &  & x & x \\ \hline
-Write Report &  &  & x &  &  &  &  & x & x \\ \hline
-\end{tabular}
-\end{table}
+Computador/Bibliotecas/Ambiente desenvolvimento
