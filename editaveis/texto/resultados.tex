@@ -15,34 +15,80 @@ Several games have been tested against the building scripts. Table \ref{tab:scri
 \begin{tabular}{|l|c|c|c|c|}
 \hline
 \textbf{Game} & \multicolumn{1}{l|}{\textbf{Compiles?}} & \multicolumn{1}{l|}{\textbf{.deb}} & \multicolumn{1}{l|}{\textbf{QT}} & \multicolumn{1}{l|}{\textbf{Runs?}} \\ \hline
-Ankhnowledge & s & s & s & s \\ \hline
-Post War & s & s & s & s \\ \hline
-Jack the Janitor & s & s & s & s \\ \hline
-Emperor vs Aliens & s & s & s & s \\ \hline
-Ninja Siege & s & s & s & s \\ \hline
-Space monkeys & s & s & s & n* \\ \hline
-War of the nets & s & s & s & n \\ \hline
-Travelling Will & s & s & s & s \\ \hline
+Ankhnowledge & y & y & y & y \\ \hline
+Post War & y & y & y & y \\ \hline
+Jack the Janitor & y & y & y & y \\ \hline
+Emperor vs Aliens & y & y & y & y \\ \hline
+Ninja Siege & y & y & y & y \\ \hline
+Space monkeys & y & y & y & n* \\ \hline
+War of the Nets & y & y & y & n \\ \hline
+Travelling Will & y & y & y & y \\ \hline
 \end{tabular}
 \end{table}
 
-The game Space Monkeys compiled correctly, however upon running it, the user couldn't do anything and the screens weren't precisely rendered. War of the nets, even compiling without errors, had a segmentation fault after a few seconds with the game open.
+The game \textit{Space Monkeys} compiled correctly, however upon running it, the user couldn't do anything and the screens weren't precisely rendered. \textit{War of the Nets}, even compiling without errors, had a segmentation fault after a few seconds with the game open.
+
+The building scripts are very similar, the only difference is that one builds games for SDL2 while the other uses SDL 1 (and their respective libraries). They work by cloning the repository and copying the required files to use CMake as seen in Algorithm \ref{alg:sdl}. This is the tool that actually compiles and builds everything. Because CMake generates a lot of files that are only used while it's running, professor Edson made a few more scripts to separate everything into folders and generate the installers.
+
+\begin{algorithm}[h!]
+\caption{Algorithm to build the games}
+\label{alg:sdl}
+\algblock[Name]{Start}{End}
+\begin{algorithmic}
+\Start
+\State Clone repository and set the project name
+\State Copy templates to target folders inside repository
+\State Find the media folder
+\State Find the source folder and \textit{.cpp} files
+\State Replace the information related to the project in the copied templates
+\State Rename some files
+\State Call the build script
+\State Create the installers
+\End
+\end{algorithmic}
+\end{algorithm}
+
+A major concern when making this script was its generality. It should run successfully with as many games as possible, requiring only a few tweaks in the source code or folder structure of the repository, if any. Starting with \textit{Jack the Janitor}, the example Professor Edson had made first, the  building script assumed a lot of things, mostly due to my inexperiencewith games and the folder structure adopted by the students. For example, in the initial versions, I thought all the \textit{.cpp} files would always be in a folder called \textit{src}. Another assumption was that all media would be in a \textit{media} folder.
+
+Both of them proved me wrong as more games were tested, but were fairly easy to fix and keep the algorithm generic. For both folders, I had to modify the script to look for directories that would have similar names to those I thought were the rule. For example, \textit{source} instead of just \textit{src}, and \textit{resources}, \textit{res} and \textit{sound} instead of just \textit{media}. Even though this doesn't find all possible names, it follows a pattern found in most folder structures and all of the projects tested so far.
+
+Another big premise was that all games would have their main file named \textit{main.cpp}. Even in repositories with Portuguese file names, it never occurred to me that anyone would name those files in any other way. However, a few games, specially \textit{Traveling Will} proved me wrong. Here, again, there was the option of looking for files named with similar words to \textit{main}, but this was a terrible option in this case, because the file could have \textit{any} name. Even if I looked for \textit{principal.cpp} that would not guarantee anything. Another option was parsing all the source files looking for the main function, but that would slow down the building process and would be error prone. Because there were so many options, I decided to keep it looking for \textit{main.cpp}, even if it required to manually change the repository.
 
 \subsection[Platform]{Platform}
 
 The website as of now allows an administrator to upload a game, with its respective information, like supported platform, related media, and installers.
+The administrator has to manually add everything, since developers to all the game information, as seen in Figures \ref{fig:include_game1}. Figure \ref{fig:admin_home} shows the home page with all the administrator choices.
 
-
-\begin{figure}[!ht]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{admin_home_page}
 \caption{Administrator home page}
 \label{fig:admin_home}
 \end{figure}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{include_game1}
+\caption{Include new game page 1}
+\label{fig:include_game1}
+\end{figure}
 
-The general public can see the available games, download them, or comment using a Facebook account.
+The general public can see a list of the available games. By choosing one, it's possible to see its information, download it for the available Operating Systems or comment using a Facebook account, as shown in Figures \ref{fig:game_list} and \ref{fig:game_detail}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{game_list}
+\caption{Game list}
+\label{fig:game_list}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{game_detail}
+\caption{Game detail}
+\label{fig:game_detail}
+\end{figure}
 
 \section[Future Work]{Future Work}
 
