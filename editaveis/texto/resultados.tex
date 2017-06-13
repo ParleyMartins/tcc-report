@@ -99,7 +99,7 @@ Another goal is to have the website running the script automatically when a user
 
 \subsection[Schedule]{Schedule}
 
-The following activities will be developed in the remaining time of the project. They are summarized in the Table \ref{tab:schedule}
+The following activities will be developed in the remaining time of the project. They are summarized in Figure \ref{fig:schedule}
 
 \begin{itemize}
 \item \textbf{Literature Review} - Review what the literature has on packaging, CMake, game development.
@@ -107,29 +107,37 @@ The following activities will be developed in the remaining time of the project.
 \item \textbf{Add other Linux distros support} - Generate at least \textit{.rpm} packages.
 \item \textbf{Add MacOS support} - Create install packages for Mac (Apple Systems).
 \item \textbf{Add Windows support} - Make a installer (\textit{.exe}) to run on Windows 10 (maybe with some backwards compatibility if possible).
-\item \textbf{Integrate to website} - Run the scripts though the website, with GitHub integration.
+\item \textbf{Integrate to platform} - Run the scripts though a request on the website
+\item \textbf{Integrate to GitHub} - Let users upload games thought GitHub hooks and read game information from there.
 \item \textbf{Add Darcy's games} - Look for games developed in Darcy Ribeiro campus and test the script on them.
-\item \textbf{Code refactoring} - Integrate scripts (SDL 1 and 2), make it more generic and efficient.
+\item \textbf{Code refactoring} - Integrate scripts (SDL 1 and 2), make them more generic and efficient.
 \item \textbf{Final adjustments} - Make minor improvements and fixes.
 \item \textbf{Write Report} - Report progress and results.
 \end{itemize}
 
-\begin{table}[h!]
+\begin{figure}[h!]
 \centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{gantt_chart}
 \caption{Project Schedule}
-\label{tab:schedule}
-\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
-\hline
-\textbf{Task} & \multicolumn{1}{l|}{\textbf{Apr}} & \multicolumn{1}{l|}{\textbf{May}} & \multicolumn{1}{l|}{\textbf{Jun}} & \multicolumn{1}{l|}{\textbf{Jul}} & \multicolumn{1}{l|}{\textbf{Ago}} & \multicolumn{1}{l|}{\textbf{Sep}} & \multicolumn{1}{l|}{\textbf{Oct}} & \multicolumn{1}{l|}{\textbf{Nov}} & \multicolumn{1}{l|}{\textbf{Dec}} \\ \hline
-Literature Review & x & x & x & x & x &  &  &  &  \\ \hline
-Add Lua support &  &  &  & x & x &  &  &  &  \\ \hline
-Add other distros support &  &  &  & x & x &  &  &  &  \\ \hline
-Add MacOS support &  &  &  &  & x & x &  &  &  \\ \hline
-Add Windows support &  &  &  &  & x & x &  &  &  \\ \hline
-Integrate to website &  &  &  &  & x & x &  &  &  \\ \hline
-Add Darcy's games &  &  &  &  &  & x & x &  &  \\ \hline
-Code refactoring &  &  &  &  &  &  & x & x &  \\ \hline
-Final adjustments &  &  &  &  &  &  &  & x & x \\ \hline
-Write Report &  &  & x &  &  &  &  & x & x \\ \hline
-\end{tabular}
-\end{table}
+\label{fig:schedule}
+\end{figure}
+
+% \begin{table}[h!]
+% \centering
+% \caption{Project Schedule}
+% \label{tab:schedule}
+% \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+% \hline
+% \textbf{Task} & \multicolumn{1}{l|}{\textbf{Apr}} & \multicolumn{1}{l|}{\textbf{May}} & \multicolumn{1}{l|}{\textbf{Jun}} & \multicolumn{1}{l|}{\textbf{Jul}} & \multicolumn{1}{l|}{\textbf{Ago}} & \multicolumn{1}{l|}{\textbf{Sep}} & \multicolumn{1}{l|}{\textbf{Oct}} & \multicolumn{1}{l|}{\textbf{Nov}} & \multicolumn{1}{l|}{\textbf{Dec}} \\ \hline
+% Literature Review & x & x & x & x & x &  &  &  &  \\ \hline
+% Add Lua support &  &  &  & x & x &  &  &  &  \\ \hline
+% Add other distros support &  &  &  & x & x &  &  &  &  \\ \hline
+% Add MacOS support &  &  &  &  & x & x &  &  &  \\ \hline
+% Add Windows support &  &  &  &  & x & x &  &  &  \\ \hline
+% Integrate to website &  &  &  &  & x & x &  &  &  \\ \hline
+% Add Darcy's games &  &  &  &  &  & x & x &  &  \\ \hline
+% Code refactoring &  &  &  &  &  &  & x & x &  \\ \hline
+% Final adjustments &  &  &  &  &  &  &  & x & x \\ \hline
+% Write Report &  &  & x &  &  &  &  & x & x \\ \hline
+% \end{tabular}
+% \end{table}

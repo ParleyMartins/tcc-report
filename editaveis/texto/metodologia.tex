@@ -25,9 +25,7 @@ The script creation and application on the games, its integration with the platf
 
 \section[Game Gathering]{Game Gathering}
 
-The games selected for this first part of the project were the ones developed in this Faculty throughout the last semesters, since the course 'Introduction to Electronic Games' has been created here in the Gama campus.
-
-Because this work is being held most at FGA, and all the games developed here are compiled and run on Linux distributions, these were selected as first games for the platform. The proximity with the students who created those games is another reason.
+The games selected for this first part of the project were the ones developed in this Faculty throughout the last semesters, since the course 'Introduction to Electronic Games' has been created here in the Gama campus. Because this work is being mostly held at FGA, and all the games developed here are compiled and run on Linux distributions, these were selected as first games for the platform. The proximity with the students who created those games is another reason.
 
 Professor Edson, that was ministering the course until last year, and Mr. Matheus Faria, the new teacher, first contacted the students and asked them to post their codes to GitHub. They cloned them into the \href{https://github.com/fgagamedev/}{fgagamedev} GitHub organization.
 
@@ -67,15 +65,19 @@ Tacape & n & - & - & - \\ \hline
 
 \section[Versioning]{Versioning}
 
+// Nao entendi esse versionamento. Se refere ao codigo?
 
 \section[Packaging]{Packaging}
 
-VM
+To create the installers for the games, professor Edson decided to use a folder structure that would be easy to understand to anyone familiar with Linux. Apart from the repository original directories, he added the folders \textit{bin}, \textit{dist}, \textit{lib} and \textit{linux}.
 
-EST
+\begin{itemize}
+\item \textit{linux} would contain the scripts needed during compilation and also helpers to run the game after its building. When other OSs are added, there will be folders with the specifics for each one of them.
+\item \textit{lib} initially consists of the source of the libraries used by the games. They are built inside this folder as well, according to the Operating System the package is being built for.
+\item \textit{dist} includes the final installers, according to each supported OS. These can be distributed and installed in any supported computer.
+\item \textit{bin} has the compiled libraries and the game executable.
 
-Workflow
-
+\end{itemize}
 \section[Platform]{Platform}
 
 
@@ -89,6 +91,4 @@ For the website development, Django was picked because of the previous knowledge
 
 Python is the language for the packaging script because it must integrate with the Django webapp and its powerful easy to use API. It will also be the language for any other needed scripts. The least required version is 3.4, and it's licensed under an OSI-approved open source license.
 
-To develop the scripts, a virtual machine running Debian Jessie was used. The VM
-
-Computador/Bibliotecas/Ambiente desenvolvimento
+To develop the scripts, a virtual machine running Debian Jessie was used. The VM was powered by Vagrant, version 1.9, that allows easy environment virtualization. It also enables a developer to test in several Operating Systems, which is required for the nature of this project. The computer hosting the script and used to its development has an Intel Core i5-6200U 2.3 GHz processor. It also has 8 GB of RAM and a NVIDIA GeForce 940M graphic processor.
