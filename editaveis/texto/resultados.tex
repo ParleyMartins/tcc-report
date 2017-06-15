@@ -4,24 +4,24 @@
 
 The project has been successful so far, with the website being developed while the scripts were created and tested. This already creates a graphical installer, that will run in most linux distributions, for all the cataloged games developed with SDL 1.
 
-\subsection[Building Scripts]{Building Scripts}
+\subsection[The Building Scripts]{The Building Scripts}
 
-Several games have been tested against the building scripts. Table \ref{tab:script_games} shows which of them were successful in compiling, creating the installers (both GUI and \textit{.deb}) and running. For some games, even with the correct compilation, they wouldn't run as expected, due to logical errors in their code.
+The building scripts were tested against half of the 16 available games. Table \ref{tab:script_games} shows which games were tested and the results of them. It was a success, because all the installers were created correctly for all of them (both GUI and \textit{.deb}). For some games, even with the correct compilation, they wouldn't run as expected, due to logical errors in their source code.
 
 \begin{table}[h!]
 \centering
 \caption{Scripts results}
 \label{tab:script_games}
-\begin{tabular}{|l|c|c|c|c|}
+\begin{tabular}{lcccc}
 \hline
-\textbf{Game} & \multicolumn{1}{l|}{\textbf{Compiles?}} & \multicolumn{1}{l|}{\textbf{.deb}} & \multicolumn{1}{l|}{\textbf{QT}} & \multicolumn{1}{l|}{\textbf{Runs?}} \\ \hline
-Ankhnowledge & y & y & y & y \\ \hline
-Post War & y & y & y & y \\ \hline
-Jack the Janitor & y & y & y & y \\ \hline
-Emperor vs Aliens & y & y & y & y \\ \hline
-Ninja Siege & y & y & y & y \\ \hline
-Space monkeys & y & y & y & n* \\ \hline
-War of the Nets & y & y & y & n \\ \hline
+\textbf{Game} & \multicolumn{1}{l}{\textbf{Compiles?}} & \multicolumn{1}{l}{\textbf{.deb}} & \multicolumn{1}{l}{\textbf{QT}} & \multicolumn{1}{l}{\textbf{Runs?}} \\ \hline
+Ankhnowledge & y & y & y & y \\
+Post War & y & y & y & y \\
+Jack the Janitor & y & y & y & y \\
+Emperor vs Aliens & y & y & y & y \\
+Ninja Siege & y & y & y & y \\
+Space monkeys & y & y & y & n* \\
+War of the Nets & y & y & y & n \\
 Travelling Will & y & y & y & y \\ \hline
 \end{tabular}
 \end{table}
@@ -36,17 +36,24 @@ The building scripts are very similar, the only difference is that one builds ga
 \algblock[Name]{Start}{End}
 \begin{algorithmic}
 \Start
-\State Clone repository and set the project name
-\State Copy templates to target folders inside repository
-\State Find the media folder
-\State Find the source folder and \textit{.cpp} files
-\State Replace the information related to the project in the copied templates
-\State Rename some files
-\State Call the build script
-\State Create the installers
+\State {$project \gets $} \Call{init}{$url,branch$} \Comment{Clone repository and set the project}
+\State \Call{copy\_files}{$default, project$} \Comment{Copy templates}
+\State {$project_{media\_dir} \gets $} \Call{find\_media}{}\Comment{Find the media folder}
+\State {$project_{source\_dir} \gets $} \Call{find\_source}{}\Comment{Find the source folder and \textit{.cpp} files}
+\State \Call{replace\_info}{$default, project$} \Comment{Replace template defaults}
+\State \Call{rename}{$default, project$} \Comment{Rename some files}
+\State \Call{build}{$project$} \Comment{Call the build script}
+\State \Call{create\_installers}{$project$} \Comment{Create the installers}
 \End
 \end{algorithmic}
 \end{algorithm}
+
+% rep.copy_files()
+% rep.find_media()
+% rep.find_source()
+% rep.replace_info()
+% rep.rename()
+% rep.build()
 
 A major concern when making this script was its generality. It should run successfully with as many games as possible, requiring only a few tweaks in the source code or folder structure of the repository, if any. Starting with \textit{Jack the Janitor}, the example Professor Edson had made first, the  building script assumed a lot of things, mostly due to my inexperiencewith games and the folder structure adopted by the students. For example, in the initial versions, I thought all the \textit{.cpp} files would always be in a folder called \textit{src}. Another assumption was that all media would be in a \textit{media} folder.
 
@@ -69,7 +76,7 @@ The administrator has to manually add everything, since developers to all the ga
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{include_game1}
-\caption{Include new game page 1}
+\caption{Include new game}
 \label{fig:include_game1}
 \end{figure}
 
