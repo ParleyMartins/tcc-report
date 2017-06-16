@@ -1,10 +1,12 @@
 \chapter[Partial Results]{Partial Results}
+\label{sec:results}
 
-\section[Results]{Results}
+% \section[Results]{Results}
 
-The project has been successful so far, with the website being developed while the scripts were created and tested. This already creates a graphical installer, that will run in most linux distributions, for all the cataloged games developed with SDL 1.
+The project has been successful so far, with the website being developed while the scripts were created and tested. These already creates a graphical installer, that will run in most Linux distributions, for all the cataloged games developed with SDL 1.
 
-\subsection[The Building Scripts]{The Building Scripts}
+\section{The Building Scripts}
+\label{sec:building_scripts}
 
 The building scripts were tested against half of the 16 available games. Table \ref{tab:script_games} shows which games were tested and the results of them. It was a success, because all the installers were created correctly for all of them (both GUI and \textit{.deb}). For some games, even with the correct compilation, they wouldn't run as expected, due to logical errors in their source code.
 
@@ -48,20 +50,14 @@ The building scripts are very similar, the only difference is that one builds ga
 \end{algorithmic}
 \end{algorithm}
 
-% rep.copy_files()
-% rep.find_media()
-% rep.find_source()
-% rep.replace_info()
-% rep.rename()
-% rep.build()
-
 A major concern when making this script was its generality. It should run successfully with as many games as possible, requiring only a few tweaks in the source code or folder structure of the repository, if any. Starting with \textit{Jack the Janitor}, the example Professor Edson had made first, the  building script assumed a lot of things, mostly due to my inexperiencewith games and the folder structure adopted by the students. For example, in the initial versions, I thought all the \textit{.cpp} files would always be in a folder called \textit{src}. Another assumption was that all media would be in a \textit{media} folder.
 
 Both of them proved me wrong as more games were tested, but were fairly easy to fix and keep the algorithm generic. For both folders, I had to modify the script to look for directories that would have similar names to those I thought were the rule. For example, \textit{source} instead of just \textit{src}, and \textit{resources}, \textit{res} and \textit{sound} instead of just \textit{media}. Even though this doesn't find all possible names, it follows a pattern found in most folder structures and all of the projects tested so far.
 
 Another big premise was that all games would have their main file named \textit{main.cpp}. Even in repositories with Portuguese file names, it never occurred to me that anyone would name those files in any other way. However, a few games, specially \textit{Traveling Will} proved me wrong. Here, again, there was the option of looking for files named with similar words to \textit{main}, but this was a terrible option in this case, because the file could have \textit{any} name. Even if I looked for \textit{principal.cpp} that would not guarantee anything. Another option was parsing all the source files looking for the main function, but that would slow down the building process and would be error prone. Because there were so many options, I decided to keep it looking for \textit{main.cpp}, even if it required to manually change the repository.
 
-\subsection[Platform]{Platform}
+\section{Platform}
+\label{sec:platform}
 
 The website as of now allows an administrator to upload a game, with its respective information, like supported platform, related media, and installers.
 The administrator has to manually add everything, since developers to all the game information, as seen in Figures \ref{fig:include_game1}. Figure \ref{fig:admin_home} shows the home page with all the administrator choices.
@@ -97,14 +93,19 @@ The general public can see a list of the available games. By choosing one, it's 
 \label{fig:game_detail}
 \end{figure}
 
-\section[Future Work]{Future Work}
+\section{Known Issues}
+
+
+\chapter{Future Work}
+\label{sec:future_work}
 
 For the next months it is expected to have the script for the SDL 2 projects finished with support for Windows and MacOS.
 
 Another goal is to have the website running the script automatically when a user links their GitHub repository to the system.
 
 
-\subsection[Schedule]{Schedule}
+\section{Schedule}
+\label{sec:schedule}
 
 The following activities will be developed in the remaining time of the project. They are summarized in Figure \ref{fig:schedule}
 
@@ -128,23 +129,3 @@ The following activities will be developed in the remaining time of the project.
 \caption{Project Schedule}
 \label{fig:schedule}
 \end{figure}
-
-% \begin{table}[h!]
-% \centering
-% \caption{Project Schedule}
-% \label{tab:schedule}
-% \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
-% \hline
-% \textbf{Task} & \multicolumn{1}{l|}{\textbf{Apr}} & \multicolumn{1}{l|}{\textbf{May}} & \multicolumn{1}{l|}{\textbf{Jun}} & \multicolumn{1}{l|}{\textbf{Jul}} & \multicolumn{1}{l|}{\textbf{Ago}} & \multicolumn{1}{l|}{\textbf{Sep}} & \multicolumn{1}{l|}{\textbf{Oct}} & \multicolumn{1}{l|}{\textbf{Nov}} & \multicolumn{1}{l|}{\textbf{Dec}} \\ \hline
-% Literature Review & x & x & x & x & x &  &  &  &  \\ \hline
-% Add Lua support &  &  &  & x & x &  &  &  &  \\ \hline
-% Add other distros support &  &  &  & x & x &  &  &  &  \\ \hline
-% Add MacOS support &  &  &  &  & x & x &  &  &  \\ \hline
-% Add Windows support &  &  &  &  & x & x &  &  &  \\ \hline
-% Integrate to website &  &  &  &  & x & x &  &  &  \\ \hline
-% Add Darcy's games &  &  &  &  &  & x & x &  &  \\ \hline
-% Code refactoring &  &  &  &  &  &  & x & x &  \\ \hline
-% Final adjustments &  &  &  &  &  &  &  & x & x \\ \hline
-% Write Report &  &  & x &  &  &  &  & x & x \\ \hline
-% \end{tabular}
-% \end{table}

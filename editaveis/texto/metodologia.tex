@@ -1,6 +1,10 @@
-\chapter[Methodology]{Methodology}
+\chapter{Methodology}
+\label{sec:methodology}
+
 This chapter explains what was and will be done within the duration of the whole project.
-% \section[Methodology]{Methodology}
+
+\section{Project Overview}
+\label{sec:project_overview}
 
 It has the main goal of creating a platform with all the games developed in the university's courses related to games. The games that will be available must have all their assets and required libraries in a single package that runs in Linux distributions without the need of installing any other package; they also must have a graphical installer for users without technical knowledge.
 
@@ -10,20 +14,27 @@ After that, a script will be generated to replicate the packaging system to all 
 
 The packaging scripts will be integrated and adapted to the platform, so that any student who posts a game will have the installers generated automatically.
 
-\section[Task Division]{Task Division}
+\section{Task Division}
+\label{sec:task_division}
 
-ADD DIAGRAM!!
+Because this is a shared work among courses, teachers and students, a special task division, illustrated in Figure \ref{fig:task_division}, will be made to accomplish the established purpose.
 
-Because this is a shared work among courses, teachers and students, a special task division will be made to accomplish the established purpose.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=200px,height=\textheight,keepaspectratio]{task_division}
+\caption{Task Division}
+\label{fig:task_division}
+\end{figure}
 
 Professor Edson and Mr. Faria were responsible for first cataloging the existing games. They will remain as helpers in the packaging system and main stakeholders for the team developing the website.
 
 The team \textit{Plataforma de Jogos UnB} from the courses 'Software Development Methods' and 'Management of Portfolios and Projects' is in charge of creating the actual website with some of the features desired.
 
-The script creation and application on the games, its integration with the platform, as well as the evolution and maintenance of the platform after the courses are finished will be my responsibility.
+The scripts creation and their application on the games, their integration with the platform, as well as the evolution and maintenance of the platform after the courses are finished will be my responsibility.
 
 
-\section[Game Gathering]{Game Gathering}
+\section{Game Gathering}
+\label{sec:game_gathering}
 
 The games selected for this first part of the project were the ones developed in this Faculty throughout the last semesters, since the course 'Introduction to Electronic Games' has been created here in the Gama campus. Because this work is being mostly held at FGA, and all the games developed here are compiled and run on Linux distributions, these were selected as first games for the platform. The proximity with the students who created those games is another reason.
 
@@ -37,8 +48,9 @@ After that, I was responsible for checking the status of the games, gathering in
 \label{tab:first_games}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{lcccc}
-\hline
-\textbf{Name} & \textbf{Source?} & \textbf{License?} & \textbf{SDL} & \textbf{Compiles?} \\ \hline
+\toprule
+\textbf{Name} & \textbf{Source?} & \textbf{License?} & \textbf{SDL} & \textbf{Compiles?} \\
+\midrule
 Deadly Wish & y & n & 2 & n \\
 Strife of Mythology & y & n & 2 & y \\
 Travelling Will & y & n & 2 & y \\
@@ -58,7 +70,8 @@ Earth Attacks & n & - & - & - \\
 Emperor vs Aliens & y & n & 1 & y \\
 Ninja Siege & y & GPL 2 & 1 & y \\
 Space monkeys & y & GPL 2 & 1 & n \\
-Tacape & n & - & - & - \\ \hline
+Tacape & n & - & - & - \\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -70,8 +83,9 @@ Out of 20 games created in \textit{Introduction to Electronic Games}, 4 didn't h
 \label{tab:final_games}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{lccc}
-\hline
-\textbf{} & \multicolumn{1}{l}{\textbf{License}} & \multicolumn{1}{l}{\textbf{SDL}} & \multicolumn{1}{l}{\textbf{Compiles}} \\ \hline
+\toprule
+\textbf{} & \multicolumn{1}{l}{\textbf{License}} & \multicolumn{1}{l}{\textbf{SDL}} & \multicolumn{1}{l}{\textbf{Compiles}} \\
+\midrule
 Deadly Wish & GPL 3 & 2 & n \\
 Strife of Mythology & GPL 2 & 2 & y \\
 Travelling Will & MIT & 2 & y \\
@@ -88,12 +102,14 @@ War of the nets & GPL 2 & 2 & y \\
 Jack the Janitor & GPL 3 & 1 & y \\
 Emperor vs Aliens & n & 1 & y \\
 Ninja Siege & GPL 2 & 1 & y \\
-Space monkeys & GPL 2 & 1 & n \\ \hline
+Space monkeys & GPL 2 & 1 & n \\
+\bottomrule
 \end{tabular}
 \end{table}
 
 
-\section[Packaging]{Packaging}
+\section{Packaging}
+\label{sec:packaging}
 
 To create the installers for the games, professor Edson decided to use a folder structure that would be easy to understand to anyone familiar with Linux. Apart from the repository original directories, he added the folders \textit{bin}, \textit{dist}, \textit{lib} and \textit{linux}.
 
@@ -105,7 +121,7 @@ To create the installers for the games, professor Edson decided to use a folder 
 
 \end{itemize}
 
-I added the directory \textit{Qt} to use the Qt Installer Framework without having to install it system-wide. Figure \ref{fig:folder_structure} shows the folders and their contents of the folders
+I added the directory \textit{Qt} to use the Qt Installer Framework without having to install it system-wide. Figure \ref{fig:folder_structure} shows the folders and their contents.
 
 \begin{figure}[h!]
 \centering
@@ -115,10 +131,12 @@ I added the directory \textit{Qt} to use the Qt Installer Framework without havi
 \label{fig:folder_structure}
 \end{figure}
 
-\section[Platform]{Platform}
+\section{Platform}
+\label{sec:platform}
 
 
-\section[Technology Choice]{Technology Choice}
+\section{Technology Choice}
+\label{sec:technology_choice}
 
 CMake is the chosen framework for generating the packages. It's suppose to help developers creating applications that run in several platforms, like Linux, Mac and Windows. It offers a lot options for that, like cross compilation and compilation directed to each of them. It is distributed under OSI-approved BSD 3-clause License and the minimum required version is 2.8.
 
