@@ -1,9 +1,25 @@
 \chapter{Literature Review}
 \label {sec:literature_review}
 
+\section{Repository}
+\label {sec:repository}
+
+According to the Merriam-Webster Dictionary (\citeyear{webster2017repository}), a repository is "a place, room or container where something is deposited". A software repository is a computer, directory or server that stores all the source code for that software project. This is usually available on the Internet, but it can also be local to the developers.
+
+Repositories are also related to the version control of the source code being produced. The definition of version control is "a system that records changes to a file or set of files over time so that you can recall specific versions later" \cite{chacon2014pro}. This allows the user to compare versions, check updates, see who introduced (or removed) an issue and when and rollback to previous versions of the system \cite{chacon2014pro}. The goal is to make it easy to return to states that were working, even after changes are made after a long time.
+
+Modern version control systems allow developers to work on a distributed basis and to parallel their tasks, with the ability of \textit{branching} the repository. Those \textit{branches} are separated lines of development, that won't mess with the main one until they are merged \cite{chacon2014pro}. This feature lets developers create and test new changes before submitting them to the project stable line of work, without affecting the final product.
+
 \section{Packages}
 \label {sec:packages}
 
 In computer science, package can have multiple meanings, depending on the context being used. A Linux package means a bundle of files containing the required data to run an application, such as binaries and information about the package.
 
 Most Linux distributions have their own package managers. Each expects and handle different types of files, but all of them have the common goal of making the installation easier. They download the package, resolve dependencies, copy the needed binaries and execute any post- or pre-configuration required by the system to install a package \cite{linode2017linux}. For example, Debian has \textit{dpkg}, Red Hat has \textit{rpm} and Arch Linux has \textit{pacman} as default package managers.
+
+Another installing method is compiling from scratch. This may be very handy if the user is more advanced or the package is not in the package manager's repository. In this case, the user will have to manually handle dependencies, download, compile and do everything else the manager does.
+
+One other way, least common in some Linux distributions, is the GUI installer, that usually provides a nice front end to the manager or executes a script.
+
+\section{CMake}
+\label {sec:cmake}
