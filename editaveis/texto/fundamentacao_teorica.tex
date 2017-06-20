@@ -31,6 +31,44 @@ In a very clever way, CMake generates native compiling and configuration scripts
 The building process is controlled by files named \textit{CMakeLists.txt}. They can have commands to generate a building environment, set needed variables, compile dependencies, link required libraries and install the project. A project that has many subdirectories, each with their own rules, can have multiple CMakeLists.txt to create the final product.
 
 
-\section{Game development}
-\label {sec:game_development}
+\section{Filesystem Hierarchy Standard}
+\label {sec:fhs}
 
+The Filesystem Hierarchy Standard was proposed on February 14, 1994 as an effort to rebuild the file and directory structure of Linux and, later, all Unix-like systems. It helps developers and users to predict the location of existing and new files on the system, by proposing how minimum files, directories and guiding principles \cite{allbery2015filesystem}.
+
+The Hierarchy starts defining types of files that can exist in a system. Whenever files differ in this classification, they should be located in different parts of the system: \textit{shareable} files are the ones that can be accessed from a remote host, while \textit{unshareable} are files that have to be on the same machine to be obtained. \textit{Static} files are the ones that aren't supposed to be changed without administrator privileges, whereas \textit{variable} ones can be changed by regular users \cite{allbery2015filesystem}
+
+The root filesystem is defined then: this should be as small as possible and it should contain all the required files to boot, reset or repair the system. It must have the directories specified on Table \ref{tab:directories} and installed software should never create new directories on this filesystem \cite{allbery2015filesystem}.
+
+
+\begin{table}[h!]
+\centering
+\caption{Directories on the Hierarchy \cite{allbery2015filesystem}}
+\label{tab:directories}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{ll}
+\toprule
+\textbf{Directory} & \textbf{Description} \\
+\midrule
+bin & Essential command binaries \\
+boot & Static files of the boot loader \\
+dev & Device files \\
+etc & Host-specific system configuration \\
+lib & Essential shared libraries and kernel modules \\
+media & Mount point for removable media \\
+mnt & Mount point for mounting a filesystem temporarily \\
+opt & Add-on application software packages \\
+run & Data relevant to running processes \\
+sbin & Essential system binaries \\
+srv & Data for services provided by this system \\
+tmp & Temporary files \\
+usr & Secondary hierarchy \\
+var & Variable data \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+From the directories in Table \ref{tab:directories}, "\texttt{/usr}, \texttt{/opt} and \texttt{/var} are designed such that they may be located on other partitions or filesystems." \cite[p. 3]{allbery2015filesystem}. The \texttt{/usr} hierarchy should include shareable data, that means that every information host-specific should be placed in other directories.
+
+About the \texttt{/var} hierarchy, FHS specifies "everything that once went into \texttt{/usr} that is written to during system operation (as opposed to installation and software maintenance) must be in \texttt{/var}." \cite[p. 30]{allbery2015filesystem}.
