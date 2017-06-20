@@ -1,14 +1,17 @@
 \chapter[Partial Results]{Partial Results}
 \label{sec:results}
 
-% \section[Results]{Results}
+This chapter explains the results obtained so far with the project development
 
-The project has been successful so far, with the website being developed while the scripts were created and tested. These already creates a graphical installer, that will run in most Linux distributions, for all the cataloged games developed with SDL 1.
+
+% \section[Results]{Results}
+% \label {sec:results}
+% The project has been successful so far, with the website being developed while the scripts were created and tested. These already creates a graphical installer, that will run in most Linux distributions, for all the cataloged games developed with SDL 1.
 
 \section{The Building Scripts}
 \label{sec:building_scripts}
 
-The building scripts were tested against half of the 16 available games. Table \ref{tab:script_games} shows which games were tested and the results of them. It was a success, because all the installers were created correctly for all of them (both GUI and \textit{.deb}). For some games, even with the correct compilation, they wouldn't run as expected, due to logical errors in their source code.
+The building scripts were tested against half of the 16 available games. Table \ref{tab:script_games} shows which games were tested and the results of them. It was a success, because all the installers were created correctly for all of them (both GUI/Qt and \textit{.deb}). For some games, even with the correct compilation, they wouldn't run as expected, due to logical errors in their source code.
 
 \begin{table}[h!]
 \centering
@@ -16,7 +19,7 @@ The building scripts were tested against half of the 16 available games. Table \
 \label{tab:script_games}
 \begin{tabular}{lcccc}
 \hline
-\textbf{Game} & \multicolumn{1}{l}{\textbf{Compiles?}} & \multicolumn{1}{l}{\textbf{.deb}} & \multicolumn{1}{l}{\textbf{QT}} & \multicolumn{1}{l}{\textbf{Runs?}} \\ \hline
+\textbf{Game} & \multicolumn{1}{l}{\textbf{Compiles?}} & \multicolumn{1}{l}{\textbf{.deb}} & \multicolumn{1}{l}{\textbf{GUI/Qt}} & \multicolumn{1}{l}{\textbf{Runs?}} \\ \hline
 Ankhnowledge & y & y & y & y \\
 Post War & y & y & y & y \\
 Jack the Janitor & y & y & y & y \\
@@ -50,7 +53,7 @@ The building scripts are very similar, the only difference is that one builds ga
 \end{algorithmic}
 \end{algorithm}
 
-A major concern when making this script was its generality. It should run successfully with as many games as possible, requiring only a few tweaks in the source code or folder structure of the repository, if any. Starting with \textit{Jack the Janitor}, the example Professor Edson had made first, the  building script assumed a lot of things, mostly due to my inexperiencewith games and the folder structure adopted by the students. For example, in the initial versions, I thought all the \textit{.cpp} files would always be in a folder called \textit{src}. Another assumption was that all media would be in a \textit{media} folder.
+A major concern when making this script was its generality. It should run successfully with as many games as possible, requiring only a few tweaks in the source code or folder structure of the repository, if any. Starting with \textit{Jack the Janitor}, the example Professor Edson had made first, the  building script assumed a lot of things, mostly due to my inexperience with games and the folder structure adopted by the students. For example, in the initial versions, I thought all the \textit{.cpp} files would always be in a folder called \textit{src}. Another assumption was that all media would be in a \textit{media} folder.
 
 Both of them proved me wrong as more games were tested, but were fairly easy to fix and keep the algorithm generic. For both folders, I had to modify the script to look for directories that would have similar names to those I thought were the rule. For example, \textit{source} instead of just \textit{src}, and \textit{resources}, \textit{res} and \textit{sound} instead of just \textit{media}. Even though this doesn't find all possible names, it follows a pattern found in most folder structures and all of the projects tested so far.
 
@@ -60,14 +63,16 @@ Another big premise was that all games would have their main file named \textit{
 \label{sec:platform}
 
 The website as of now allows an administrator to upload a game, with its respective information, like supported platform, related media, and installers.
-The administrator has to manually add everything, since developers to all the game information, as seen in Figures \ref{fig:include_game1}. Figure \ref{fig:admin_home} shows the home page with all the administrator choices.
+The administrator has to manually add all the information related to a game, like developers who worked on it, awards won (if any), release date, version number, etc. Figure \ref{fig:include_game1} shows part of the screen to add a game.
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{admin_home_page}
-\caption{Administrator home page}
-\label{fig:admin_home}
-\end{figure}
+%Figure \ref{fig:admin_home} shows the home page with all the administrator choices.
+
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=200px,height=\textheight,keepaspectratio]{admin_home_page}
+% \caption{Administrator home page}
+% \label{fig:admin_home}
+% \end{figure}
 
 \begin{figure}[h!]
 \centering
@@ -76,14 +81,14 @@ The administrator has to manually add everything, since developers to all the ga
 \label{fig:include_game1}
 \end{figure}
 
-The general public can see a list of the available games. By choosing one, it's possible to see its information, download it for the available Operating Systems or comment using a Facebook account, as shown in Figures \ref{fig:game_list} and \ref{fig:game_detail}
+The general public can see a list of the available games, with their uploaded pictures. The home page also shows a slide with some pictures of highlighted games. By choosing one, it's possible to see its version, official repository, release date, description, among other information. It's also possible to download the game for the available Operating Systems or comment using a Facebook account, as shown in Figure \ref{fig:game_detail}
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{game_list}
-\caption{Game list}
-\label{fig:game_list}
-\end{figure}
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=200px,height=\textheight,keepaspectratio]{game_list}
+% \caption{Game list}
+% \label{fig:game_list}
+% \end{figure}
 
 
 \begin{figure}[h!]
@@ -94,34 +99,51 @@ The general public can see a list of the available games. By choosing one, it's 
 \end{figure}
 
 \section{Known Issues}
+\label {sec:issues}
+
+The building scripts have a few problems that will be fixed in the second part of the project:
+
+\begin{itemize}
+\item Choosing a destination folder different than the user's home directory causes the Qt installer to fail. It's believed that this is happening because somewhere on the Qt templates the symbol $\sim$ (abbreviation for home) is being used.
+
+\item When the installation works successfully, the game doesn't run properly (or at all) on some systems (tested on Arch Linux for now). Probably there are some missing libraries on the final package, but this is just a hunch and has to be proved.
+\end{itemize}
 
 
 \chapter{Future Work}
 \label{sec:future_work}
 
-For the next months it is expected to have the script for the SDL 2 projects finished with support for Windows and MacOS.
-
-Another goal is to have the website running the script automatically when a user links their GitHub repository to the system.
-
+This chapter explains what will be done in the remaining time of the project. It talks about some of the long term goals and the activities that will be carried to achieve them.
 
 \section{Schedule}
 \label{sec:schedule}
 
-The following activities will be developed in the remaining time of the project. They are summarized in Figure \ref{fig:schedule}
+For the next months it is expected to have the script for SDL 2 projects finished with support for Windows and MacOS. The known issues described on Section \ref{sec:issues} have to be fixed for both SDL 1 and 2. The building scripts have to be tested against all the available games.
 
-\begin{itemize}
+Another goal is to allow the user to link their GitHub repository to the website, letting them build the packages for the game automatically with GitHub hooks. The game will then, be available in the website without the need for a manual upload from an administrator.
+
+It's also purpose of this next part of the semester to maintain and evolve the platform while the tasks related to the script are being held. Some selected issues will be resolved to add new features and fix bugs found on the system.
+
+The following activities will be developed in the remaining time of the project. They are summarized in Figure \ref{fig:schedule}.
+
+\begin{enumerate}
 \item \textbf{Literature Review} - Review what the literature has on packaging, CMake, game development.
-\item \textbf{Add Lua support} - Some of the games have lua as a dependency library that also needs to go in the final package..
-\item \textbf{Add other Linux distros support} - Generate at least \textit{.rpm} packages.
+\item \textbf{Add Lua support} - Some of the games, especially the ones built with SDL 2, have lua as a dependency library. This lib is not being being compiled in the current version of the building scripts.
+\item \textbf{Add other Linux distros support} - Allow other users to install the games using their package manager. Generate at least \textit{.rpm} packages in addition to the \textit{.deb} already generated.
+\item \textbf{Add Darcy's games} - Look for games developed at Darcy Ribeiro campus and run the building scripts on them.
 \item \textbf{Add MacOS support} - Create install packages for Mac (Apple Systems).
-\item \textbf{Add Windows support} - Make a installer (\textit{.exe}) to run on Windows 10 (maybe with some backwards compatibility if possible).
+\item \textbf{Add Windows support} - Make an installer (\textit{.exe}) to run on Windows 10 (maybe with some backwards compatibility if possible).
 \item \textbf{Integrate to platform} - Run the scripts though a request on the website
-\item \textbf{Integrate to GitHub} - Let users upload games thought GitHub hooks and read game information from there.
-\item \textbf{Add Darcy's games} - Look for games developed in Darcy Ribeiro campus and test the script on them.
+\item \textbf{Avoid duplication on save} - According to the GitHub repository of the team, models are being saved with duplicated data.
+\item \textbf{Create games statistics} - Create endpoints to send game statistics, like views and download amounts.
+\item \textbf{Submit issues to the GitHub repository} - Allow users to submit issues through the platform to the GitHub repository of the game.
+\item \textbf{Integrate to GitHub} - Make the system receive GitHub signals.
+\item \textbf{Allow user to build a game from a branch} - Let the user upload a game based on a chosen branch. This will in fact run the script to build the game, but without the need of a an administrator.
+\item \textbf{Read game info from game branch} - Developers, description and even some images are usually available in the game repository. This task is to read that information to avoid the need of manual input of the administrator.
 \item \textbf{Code refactoring} - Integrate scripts (SDL 1 and 2), make them more generic and efficient.
 \item \textbf{Final adjustments} - Make minor improvements and fixes.
 \item \textbf{Write Report} - Report progress and results.
-\end{itemize}
+\end{enumerate}
 
 \begin{figure}[h!]
 \centering

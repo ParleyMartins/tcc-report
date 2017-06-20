@@ -17,9 +17,20 @@ In computer science, package can have multiple meanings, depending on the contex
 
 Most Linux distributions have their own package managers. Each expects and handle different types of files, but all of them have the common goal of making the installation easier. They download the package, resolve dependencies, copy the needed binaries and execute any post- or pre-configuration required by the system to install a package \cite{linode2017linux}. For example, Debian has \textit{dpkg}, Red Hat has \textit{rpm} and Arch Linux has \textit{pacman} as default package managers.
 
-Another installing method is compiling from scratch. This may be very handy if the user is more advanced or the package is not in the package manager's repository. In this case, the user will have to manually handle dependencies, download, compile and do everything else the manager does.
+Another installing method is compiling from scratch. This may be very handy if the user is more advanced or the package is not in the package manager's repository, however, in this case, the user will have to manually handle dependencies, download, compile and do everything else the manager does.
 
-One other way, least common in some Linux distributions, is the GUI installer, that usually provides a nice front end to the manager or executes a script.
-
-\section{CMake}
+\subsection{CMake}
 \label {sec:cmake}
+
+Creating packages for multiple platforms requires a lot of time and effort, because it has to be compiled on each of the systems, with those system's libraries, binaries and architecture. In order to make this task easier, several cross platform building tools were created.
+
+CMake was created to fulfill the need for "a powerful, cross-platform build environment for the Insight Segmentation and Registration Toolkit" \cite{cmake2017overview}. It is "a system that manages the build process in an operating system and in a compiler-independent manner" \cite{cmake2017overview}.
+
+In a very clever way, CMake generates native compiling and configuration scripts (like makefiles for Unix and namespaces for Windows) and use them to build the package \cite{cmake2017overview}. It is also designed to be used with the native environment, unlike other building tools \cite{cmake2017overview}.
+
+The building process is controlled by files named \textit{CMakeLists.txt}. They can have commands to generate a building environment, set needed variables, compile dependencies, link required libraries and install the project. A project that has many subdirectories, each with their own rules, can have multiple CMakeLists.txt to create the final product.
+
+
+\section{Game development}
+\label {sec:game_development}
+

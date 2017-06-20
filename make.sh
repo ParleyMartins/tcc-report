@@ -1,5 +1,5 @@
 while :;
 do
   make #&> /dev/null
-  sleep 5
+  sleep 6
 done

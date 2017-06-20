@@ -28,7 +28,7 @@ Because this is a shared work among courses, teachers and students, a special ta
 
 Professor Edson and Mr. Faria were responsible for first cataloging the existing games. They will remain as helpers in the packaging system and main stakeholders for the team developing the website.
 
-The team \textit{Plataforma de Jogos UnB} from the courses 'Software Development Methods' and 'Management of Portfolios and Projects' is in charge of creating the actual website with some of the features desired.
+The team \textit{Plataforma de Jogos UnB} from the courses \textit{M\'etodos de Desenvolvimento de Software} (Software Development Methods) and \textit{Gest\~ao de Portfolios e Projetos} (Management of Portfolios and Projects) is in charge of creating the first version of the actual website with some of the features desired.
 
 The scripts creation and their application on the games, their integration with the platform, as well as the evolution and maintenance of the platform after the courses are finished will be my responsibility.
 
@@ -36,15 +36,15 @@ The scripts creation and their application on the games, their integration with 
 \section{Game Gathering}
 \label{sec:game_gathering}
 
-The games selected for this first part of the project were the ones developed in this Faculty throughout the last semesters, since the course 'Introduction to Electronic Games' has been created here in the Gama campus. Because this work is being mostly held at FGA, and all the games developed here are compiled and run on Linux distributions, these were selected as first games for the platform. The proximity with the students who created those games is another reason.
+The games selected for this first part of the project were the ones developed in this Faculty throughout the last semesters, since the course \textit{Introdu\c{c}\~ao aos Jogos Eletr\^onicos} (Introduction to Electronic Games) has been created here in the Gama campus. Because this work is being mostly held at FGA, and all the games developed here are compiled and run on Linux distributions, these were selected as first games for the platform. The proximity with the students who created those games is another reason.
 
 Professor Edson, that was ministering the course until last year, and Mr. Matheus Faria, the new teacher, first contacted the students and asked them to post their codes to GitHub. They cloned them into the \href{https://github.com/fgagamedev/}{fgagamedev} GitHub organization.
 
-After that, I was responsible for checking the status of the games, gathering information such as which of them compiled, which SDL version they used, which ones had licenses. The table \ref{tab:first_games} shows the initial results.
+After that, I was responsible for checking the status of the games, gathering information such as which of them compiled, which SDL version they used, which ones had licenses. Table \ref{tab:first_games} shows these initial results.
 
 \begin{table}[h!]
 \centering
-\caption{Status of the selected games}
+\caption{Initial status of the selected games}
 \label{tab:first_games}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{lcccc}
@@ -75,7 +75,7 @@ Tacape & n & - & - & - \\
 \end{tabular}
 \end{table}
 
-Out of 20 games created in \textit{Introduction to Electronic Games}, 4 didn't have a known repository and 8 didn't have a license that allowed us to change them at that time. Mr. Faria and I were responsible for finding the games and getting the missing licenses. As result of this task, \textit{The Last World War} was added and 5 other had licenses acquired as shown in table \ref{tab:final_games}.
+Out of 20 games created in \textit{Introdu\c{c}\~ao aos Jogos Eletr\^onicos}, 4 didn't have a known repository and 8 didn't have a license that allowed us to change them at that time. Mr. Faria and I were responsible for finding unknown games and getting the missing licenses. As result of this task, \textit{The Last World War} was added and 5 other had licenses acquired as shown in Table \ref{tab:final_games}.
 
 \begin{table}[h!]
 \centering
@@ -111,7 +111,7 @@ Space monkeys & GPL 2 & 1 & n \\
 \section{Packaging}
 \label{sec:packaging}
 
-To create the installers for the games, professor Edson decided to use a folder structure that would be easy to understand to anyone familiar with Linux. Apart from the repository original directories, he added the folders \textit{bin}, \textit{dist}, \textit{lib} and \textit{linux}.
+To create the installers for the games, professor Edson decided to use a folder structure that would be easy to understand to anyone familiar with Linux. Apart from the original directories in the repository, he added the folders \textit{bin}, \textit{dist}, \textit{lib} and \textit{linux}.
 
 \begin{itemize}
 \item \textit{linux} would contain the scripts needed during compilation and also helpers to run the game after its building. When other OSs are added, there will be folders with the specifics for each one of them.
@@ -121,7 +121,7 @@ To create the installers for the games, professor Edson decided to use a folder 
 
 \end{itemize}
 
-I added the directory \textit{Qt} to use the Qt Installer Framework without having to install it system-wide. Figure \ref{fig:folder_structure} shows the folders and their contents.
+I added the directory \textit{Qt} to use the Qt Installer Framework without having to install it system-wide. Figure \ref{fig:folder_structure} shows the folders and their contents to a SDL 1 project.
 
 \begin{figure}[h!]
 \centering
@@ -134,16 +134,22 @@ I added the directory \textit{Qt} to use the Qt Installer Framework without havi
 \section{Platform}
 \label{sec:platform}
 
+The first version of the platform was developed using mixed development methods. During the first half of the semester, the Rational Unified Process was used. For the next part, Scrum and XP were chosen. This choice of development framework is because of how the courses are divided.
 
-\section{Technology Choice}
-\label{sec:technology_choice}
+Throughout the RUP part of the development, the team created several documents to aid the development cycle, such as, vision, architecture document, class diagram, use case diagram, use case specification, test case specification.
+
+These documents helped the team to understand the system requirements and how they should be implemented. The most experienced members also helped the others to learn the technologies to develop the website.
+
+
+\section{Tools}
+\label{sec:tools}
 
 CMake is the chosen framework for generating the packages. It's suppose to help developers creating applications that run in several platforms, like Linux, Mac and Windows. It offers a lot options for that, like cross compilation and compilation directed to each of them. It is distributed under OSI-approved BSD 3-clause License and the minimum required version is 2.8.
 
-For the graphical installer, Qt Installer Framework, has been selected. It is easy to use and offer a nice GUI with all the necessary steps for installing a package, like license agreement and path choice. This framework is distributed under LGPLv3 license and the version being used is 2.0.5.
+For the graphical installer, Qt Installer Framework, has been selected. It is easy to use and offers a nice GUI with all the necessary steps for installing a package, like license agreement and path choice. This framework is distributed under LGPLv3 license and the version being used is 2.0.5.
 
-For the website development, Django was picked because of the previous knowledge the group had with it. To make the front end of the application, Facebook's React was chosen for the flexibility it gives to the user interface. They are both very scalable, have a big support on the community and are released under the BSD 3-clause license. The versions being used are the last ones at the beginning of the project, namely 1.11.1, for Django, and 15.5.4, for React.
+For the website development, Django was picked because of the previous knowledge the group had with it. To make the front end of the application, Facebook's React was chosen for the flexibility it gives to the user interface. They are both very scalable, have a big support on the community and are released under the BSD 3-clause license. The versions being used are the last ones at the beginning of the project, namely, 1.11.1, for Django, and 15.5.4, for React.
 
 Python is the language for the packaging script because it must integrate with the Django webapp and its powerful easy to use API. It will also be the language for any other needed scripts. The least required version is 3.4, and it's licensed under an OSI-approved open source license.
 
-To develop the scripts, a virtual machine running Debian Jessie was used. The VM was powered by Vagrant, version 1.9, that allows easy environment virtualization. It also enables a developer to test in several Operating Systems, which is required for the nature of this project. The computer hosting the script and used to its development has an Intel Core i5-6200U 2.3 GHz processor. It also has 8 GB of RAM and a NVIDIA GeForce 940M graphic processor.
+To develop the scripts, a virtual machine running Debian Jessie was used. The VM was powered by Vagrant, version 1.9, that allows easy environment virtualization. It also enables a developer to test in several Operating Systems, which is required for the nature of this project. The computer hosting the script and used to its development has an Intel Core i5-6200U 2.3 GHz processor. It also has 8 GB of RAM and an NVIDIA GeForce 940M graphic processor.
