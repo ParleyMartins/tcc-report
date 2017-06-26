@@ -45,8 +45,8 @@ The building scripts are very similar, the only difference is that one builds ga
 \Start
 \State {$project \gets $} \Call{init}{$url,branch$} \Comment{Clone repository and set the project}
 \State \Call{copy\_files}{$default, project$} \Comment{Copy templates}
-\State {$project_{media\_dir} \gets $} \Call{find\_media}{}\Comment{Find the media folder}
-\State {$project_{source\_dir} \gets $} \Call{find\_source}{}\Comment{Find the source folder and \textit{.cpp} files}
+\State {$project.media\_dir \gets $} \Call{find\_media}{}\Comment{Find the media folder}
+\State {$project.source\_dir \gets $} \Call{find\_source}{}\Comment{Find the source folder and \textit{.cpp} files}
 \State \Call{replace\_info}{$default, project$} \Comment{Replace template defaults}
 \State \Call{rename}{$default, project$} \Comment{Rename some files}
 \State \Call{build}{$project$} \Comment{Call the build script}
@@ -81,7 +81,7 @@ The administrator has to manually add all the information related to a game, lik
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{include_game1}
+\fbox{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{include_game1}}
 \caption{Include new game}
 \label{fig:include_game1}
 \end{figure}
