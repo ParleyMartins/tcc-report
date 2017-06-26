@@ -55,13 +55,13 @@ The building scripts are very similar, the only difference is that one builds ga
 \end{algorithmic}
 \end{algorithm}
 
-A major concern when making this script was its generality. It should run successfully with as many games as possible, requiring only a few tweaks in the source code or folder structure of the repository, if any. Starting with \textit{Jack the Janitor}, the example Professor Edson had made first, the  building script assumed a lot of things, mostly due to my inexperience with games and the folder structure adopted by the students. For example, in the initial versions, I thought all the \textit{.cpp} files would always be in a folder called \textit{src}. Another assumption was that all media would be in a \textit{media} folder.
+A major concern when making this script was its generality. It should run successfully with as many games as possible, requiring only a few tweaks in the source code or folder structure of the repository, if any. Starting with \textit{Jack the Janitor}, the example Professor Edson had made first, the  building script assumed a lot of things, mostly due to my inexperience with games and the folder structure adopted by the students. For example, in the initial versions, I thought all the \textit{.cpp} files would always be in a folder called \texttt{src}. Another assumption was that all media would be in a \texttt{media} folder.
 
-Both of them proved me wrong as more games were tested, but were fairly easy to fix and keep the algorithm generic. For both folders, I had to modify the script to look for directories that would have similar names to those I thought were the rule. For example, \textit{source} instead of just \textit{src}, and \textit{resources}, \textit{res} and \textit{sound} instead of just \textit{media}. Even though this doesn't find all possible names, it follows a pattern found in most folder structures and all of the projects tested so far.
+Both of them proved me wrong as more games were tested, but were fairly easy to fix and keep the algorithm generic. For both folders, I had to modify the script to look for directories that would have similar names to those I thought were the rule. For example, \texttt{source} instead of just \texttt{src}, and \texttt{resources}, \texttt{res} and \texttt{sound} instead of just \texttt{media}. Even though this doesn't find all possible names, it follows a pattern found in most folder structures and all of the projects tested so far.
 
-Another big premise was that all games would have their main file named \textit{main.cpp}. Even in repositories with Portuguese file names, it never occurred to me that anyone would name those files in any other way. However, a few games, specially \textit{Traveling Will} proved me wrong. Here, again, there was the option of looking for files named with similar words to \textit{main}, but this was a terrible option in this case, because the file could have \textit{any} name. Even if I looked for \textit{principal.cpp} that would not guarantee anything.
+Another big premise was that all games would have their main file named \texttt{main.cpp}. Even in repositories with Portuguese file names, it never occurred to me that anyone would name those files in any other way. However, a few games, specially \textit{Traveling Will} proved me wrong. Here, again, there was the option of looking for files named with similar words to \texttt{main}, but this was a terrible option in this case, because the file could have \texttt{any} name. Even if I looked for \texttt{principal.cpp} that would not guarantee anything.
 
-One other option was parsing all the source files looking for the main function, but that would slow down the building process and would be error prone. Because there were so many options, I decided to keep the script looking for \textit{main.cpp}, even if it required to manually change the repository.
+One other option was parsing all the source files looking for the main function, but that would slow down the building process and would be error prone. Because there were so many options, I decided to keep the script looking for \texttt{main.cpp}, even if it required to manually change the repository.
 
 
 \section{Platform}
@@ -109,9 +109,9 @@ The general public can see a list of the available games, with their uploaded pi
 The building scripts have a few problems that will be fixed in the second part of the project:
 
 \begin{itemize}
-\item Choosing a destination folder different than the user's home directory causes the Qt installer to fail. This is likely happening because somewhere on the Qt templates the symbol $\sim$ (abbreviation for home) is being used.
+\item choosing a destination folder different than the user's home directory causes the Qt installer to fail. This is likely happening because somewhere on the Qt templates the symbol $\sim$ (abbreviation for home) is being used;
 
-\item When the installation works successfully, the game doesn't run properly (or at all) on some systems (tested on Arch Linux for now). Probably there are some missing libraries on the final package, but this is just a hunch and has to be proved.
+\item when the installation works successfully, the game doesn't run properly (or at all) on some systems (tested on Arch Linux for now). Probably there are some missing libraries on the final package, but this is just a hunch and has to be proved;
 
-\item The games are running without sound, even on host systems that have full access to the sound card.
+\item the games are running without sound, even on host systems that have full access to the sound card.
 \end{itemize}

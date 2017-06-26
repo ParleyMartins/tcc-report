@@ -38,9 +38,42 @@ The scripts creation and their application on the games, their integration with 
 
 The games selected for this first part of the project were the ones developed in this Faculty throughout the last semesters, since the course \textit{Introdu\c{c}\~ao aos Jogos Eletr\^onicos} (Introduction to Electronic Games) has been created here in the Gama campus. Because this work is being mostly held at FGA, and all the games developed here are compiled and run on Linux distributions, these were selected as first games for the platform. The proximity with the students who created those games is another reason.
 
-Professor Edson, that was ministering the course until last year, and Mr. Matheus Faria, the new teacher, first contacted the students and asked them to post their codes to GitHub. They cloned them into the \href{https://github.com/fgagamedev/}{fgagamedev} GitHub organization.
+Professor Edson, that was ministering the course until last year, and Mr. Matheus Faria, the new teacher, first contacted the students and asked them to post their codes to GitHub. They cloned them into the \texttt{fgagamedev}\footnote{ \href{https://github.com/fgagamedev}{https://github.com/fgagamedev/} } GitHub organization.
 
 After that, I was responsible for checking the status of the games, gathering information such as which of them compiled, which SDL version they used, which ones had licenses. Table \ref{tab:first_games} shows these initial results.
+
+% \begin{center}
+% \begin{longtable}{lcccc}
+% \caption{Initial status of the selected games}
+% \label{tab:first_games}
+
+% % \rowcolors{2}{gray!10}{white}
+% % \toprule
+% \textbf{Name} & \textbf{Source?} & \textbf{License?} & \textbf{SDL} & \textbf{Compiles?} \\
+% % \midrule
+% Deadly Wish & y & n & 2 & n \\
+% Strife of Mythology & y & n & 2 & y \\
+% Travelling Will & y & n & 2 & y \\
+% 7 Keys & y & MIT & 2 & n \\
+% Babel & y & GPL 2 & 2 & y \\
+% Terracota & y & MIT & 2 & n \\
+% Dauphine & y & n & 2 & n \\
+% Imagina na Copa & y & n & 2 & y \\
+% Kays Against the World & y & n & 2 & y \\
+% Ankhnowledge & y & GPL 2 & 1 & y \\
+% The Last World War & n & - & - & - \\
+% Post War & y & n & 1 & y \\
+% War of the nets & y & GPL 2 & 2 & y \\
+% Jack the Janitor & y & GPL 3 & 1 & y \\
+% Drawing Attack & n & - & - & - \\
+% Earth Attacks & n & - & - & - \\
+% Emperor vs Aliens & y & n & 1 & y \\
+% Ninja Siege & y & GPL 2 & 1 & y \\
+% Space monkeys & y & GPL 2 & 1 & n \\
+% Tacape & n & - & - & - \\
+% % \bottomrule
+% \end{longtable}
+% \end{center}
 
 \begin{table}[h!]
 \centering
@@ -79,7 +112,7 @@ Out of 20 games created in \textit{Introdu\c{c}\~ao aos Jogos Eletr\^onicos}, 4 
 
 \begin{table}[h!]
 \centering
-\caption{Final game status}
+\caption{Game status after contacting developers}
 \label{tab:final_games}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{lccc}
@@ -111,17 +144,17 @@ Space monkeys & GPL 2 & 1 & n \\
 \section{Packaging}
 \label{sec:packaging}
 
-To create the installers for the games, professor Edson decided to use a folder structure that would be easy to understand to anyone familiar with Linux. Apart from the original directories in the repository, he added the folders \textit{bin}, \textit{dist}, \textit{lib} and \textit{linux}.
+To create the installers for the games, professor Edson decided to use a folder structure that would be easy to understand to anyone familiar with Linux. Apart from the original directories in the repository, he added the folders \texttt{bin}, \texttt{dist}, \texttt{lib} and \texttt{linux}.
 
 \begin{itemize}
-\item \textit{linux} would contain the scripts needed during compilation and also helpers to run the game after its building. When other OSs are added, there will be folders with the specifics for each one of them.
-\item \textit{lib} initially consists of the source of the libraries used by the games. They are built inside this folder as well, according to the Operating System the package is being built for.
-\item \textit{dist} includes the final installers, according to each supported OS. These can be distributed and installed in any supported computer.
-\item \textit{bin} has the compiled libraries and the game executable.
+\item \texttt{linux} would contain the scripts needed during compilation and also helpers to run the game after its building. When other OSs are added, there will be folders with the specifics for each one of them;
+\item \texttt{lib} initially consists of the source of the libraries used by the games. They are built inside this folder as well, according to the Operating System the package is being built for;
+\item \texttt{dist} includes the final installers, according to each supported OS. These can be distributed and installed in any supported computer;
+\item \texttt{bin} has the compiled libraries and the game executable.
 
 \end{itemize}
 
-I added the directory \textit{Qt} to use the Qt Installer Framework without having to install it system-wide. Figure \ref{fig:folder_structure} shows the folders and their contents to a SDL 1 project.
+I added the directory \texttt{Qt} to use the Qt Installer Framework without having to install it system-wide. Figure \ref{fig:folder_structure} shows the folders and their contents to a SDL 1 project.
 
 \begin{figure}[h!]
 \centering
@@ -131,7 +164,7 @@ I added the directory \textit{Qt} to use the Qt Installer Framework without havi
 \label{fig:folder_structure}
 \end{figure}
 
-\section{Platform}
+\section{Platform Development}
 \label{sec:platform}
 
 The first version of the platform was developed using mixed development methods. During the first half of the semester, the Rational Unified Process was used. For the next part, Scrum and XP were chosen. This choice of development framework is because of how the courses are divided.

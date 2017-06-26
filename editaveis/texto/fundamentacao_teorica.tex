@@ -1,34 +1,19 @@
-\chapter{Literature Review}
-\label {sec:literature_review}
+\chapter{Basic Concepts}
+\label {sec:basic_concepts}
 
-\section{Repository}
-\label {sec:repository}
+This chapter gives an overview on some basic concepts needed by the reader to understand this work. It starts talking about games and game design, then talks a little about the Linux Filesystem, that helps developers to understand where their binaries and other files should go on the user's system. At the end, there are brief words on repositories and packages.
 
-According to the Merriam-Webster Dictionary (\citeyear{webster2017repository}), a repository is "a place, room or container where something is deposited". A software repository is a computer, directory or server that stores all the source code for that software project. This is usually available on the Internet, but it can also be local to the developers.
+\section{Games}
+\label {sec:games}
 
-Repositories are also related to the version control of the source code being produced. The definition of version control is "a system that records changes to a file or set of files over time so that you can recall specific versions later" \cite{chacon2014pro}. This allows the user to compare versions, check updates, see who introduced (or removed) an issue and when and rollback to previous versions of the system \cite{chacon2014pro}. The goal is to make it easy to return to states that were working, even after changes are made after a long time.
+Games have been a part of human development since their early childhood and have been part of history in its most basic ways. The basic assumption of a game is that it provides a fun time, bonding and usually learning of new skills. Even though there are many games meant to play alone, they normally are meant to play with someone else (even if that someone is the computer), because the interaction with something is a key concept for any game.
 
-Modern version control systems allow developers to work on a distributed basis and to parallel their tasks, with the ability of \textit{branching} the repository. Those \textit{branches} are separated lines of development, that won't mess with the main one until they are merged \cite{chacon2014pro}. This feature lets developers create and test new changes before submitting them to the project stable line of work, without affecting the final product.
+They can take several format, like board, card, dice games. Each format has unique strategies to win. Board games usually divide the user space in sectors, and everything is related to which sectors you are in and how you control them. Card games are related to symbols (the cards) and the possible combinations of them.
 
-\section{Packages}
-\label {sec:packages}
+Since computers were invented they completely changed the world of games. New kind of games, like \textit{first person shooter} and \textit{tower defense}, were created and made popular. With the Internet, it became even easier to own and play different games, also it's possible to play almost any game with anyone in the world.
 
-In computer science, package can have multiple meanings, depending on the context being used. A Linux package means a bundle of files containing the required data to run an application, such as binaries and information about the package.
-
-Most Linux distributions have their own package managers. Each expects and handle different types of files, but all of them have the common goal of making the installation easier. They download the package, resolve dependencies, copy the needed binaries and execute any post- or pre-configuration required by the system to install a package \cite{linode2017linux}. For example, Debian has \textit{dpkg}, Red Hat has \textit{rpm} and Arch Linux has \textit{pacman} as default package managers.
-
-Another installing method is compiling from scratch. This may be very handy if the user is more advanced or the package is not in the package manager's repository, however, in this case, the user will have to manually handle dependencies, download, compile and do everything else the manager does.
-
-\subsection{CMake}
-\label {sec:cmake}
-
-Creating packages for multiple platforms requires a lot of time and effort, because it has to be compiled on each of the systems, with those system's libraries, binaries and architecture. In order to make this task easier, several cross platform building tools were created.
-
-CMake was created to fulfill the need for "a powerful, cross-platform build environment for the Insight Segmentation and Registration Toolkit" \cite{cmake2017overview}. It is "a system that manages the build process in an operating system and in a compiler-independent manner" \cite{cmake2017overview}.
-
-In a very clever way, CMake generates native compiling and configuration scripts (like makefiles for Unix and namespaces for Windows) and use them to build the package \cite{cmake2017overview}. It is also designed to be used with the native environment, unlike other building tools \cite{cmake2017overview}.
-
-The building process is controlled by files named \textit{CMakeLists.txt}. They can have commands to generate a building environment, set needed variables, compile dependencies, link required libraries and install the project. A project that has many subdirectories, each with their own rules, can have multiple CMakeLists.txt to create the final product.
+\section{Game Platforms}
+\label {sec:game_platforms}
 
 
 \section{Filesystem Hierarchy Standard}
@@ -50,25 +35,55 @@ The root filesystem is defined then: this should be as small as possible and it 
 \toprule
 \textbf{Directory} & \textbf{Description} \\
 \midrule
-bin & Essential command binaries \\
-boot & Static files of the boot loader \\
-dev & Device files \\
-etc & Host-specific system configuration \\
-lib & Essential shared libraries and kernel modules \\
-media & Mount point for removable media \\
-mnt & Mount point for mounting a filesystem temporarily \\
-opt & Add-on application software packages \\
-run & Data relevant to running processes \\
-sbin & Essential system binaries \\
-srv & Data for services provided by this system \\
-tmp & Temporary files \\
-usr & Secondary hierarchy \\
-var & Variable data \\
+\texttt{bin} & Essential command binaries \\
+\texttt{boot} & Static files of the boot loader \\
+\texttt{dev} & Device files \\
+\texttt{etc} & Host-specific system configuration \\
+\texttt{lib} & Essential shared libraries and kernel modules \\
+\texttt{media} & Mount point for removable media \\
+\texttt{mnt} & Mount point for mounting a filesystem temporarily \\
+\texttt{opt} & Add-on application software packages \\
+\texttt{run} & Data relevant to running processes \\
+\texttt{sbin} & Essential system binaries \\
+\texttt{srv} & Data for services provided by this system \\
+\texttt{tmp} & Temporary files \\
+\texttt{usr} & Secondary hierarchy \\
+\texttt{var} & Variable data \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 
-From the directories in Table \ref{tab:directories}, "\texttt{/usr}, \texttt{/opt} and \texttt{/var} are designed such that they may be located on other partitions or filesystems." \cite[p. 3]{allbery2015filesystem}. The \texttt{/usr} hierarchy should include shareable data, that means that every information host-specific should be placed in other directories.
+From the directories in Table \ref{tab:directories}, \lq\lq \texttt{/usr}, \texttt{/opt} and \texttt{/var} are designed such that they may be located on other partitions or filesystems.\rq\rq{} \cite[p. 3]{allbery2015filesystem}. The \texttt{/usr} hierarchy should include shareable data, that means that every information host-specific should be placed in other directories.
 
-About the \texttt{/var} hierarchy, FHS specifies "everything that once went into \texttt{/usr} that is written to during system operation (as opposed to installation and software maintenance) must be in \texttt{/var}." \cite[p. 30]{allbery2015filesystem}.
+About the \texttt{/var} hierarchy, FHS specifies \lq\lq everything that once went into \texttt{/usr} that is written to during system operation (as opposed to installation and software maintenance) must be in \texttt{/var}.\rq\rq{}  \cite[p. 30]{allbery2015filesystem}.
+
+
+\section{Repository}
+\label {sec:repository}
+
+According to the Merriam-Webster Dictionary (\citeyear{webster2017repository}), a repository is \lq\lq a place, room or container where something is deposited.\rq\rq{} A software repository is a computer, directory or server that stores all the source code for that software project. This is usually available on the Internet, but it can also be local to the developers.
+
+Repositories are also related to the version control of the source code being produced. The definition of version control is \lq\lq a system that records changes to a file or set of files over time so that you can recall specific versions later\rq\rq{} \cite{chacon2014pro}. This allows the user to compare versions, check updates, see who introduced (or removed) an issue and when and rollback to previous versions of the system \cite{chacon2014pro}. The goal is to make it easy to return to states that were working, even after changes are made after a long time.
+
+Modern version control systems allow developers to work on a distributed basis and to parallel their tasks, with the ability of \textit{branching} the repository. Those \textit{branches} are separated lines of development, that won't mess with the main one until they are merged \cite{chacon2014pro}. This feature lets developers create and test new changes before submitting them to the project stable line of work, without affecting the final product.
+
+\section{Packages}
+\label {sec:packages}
+
+In computer science package can have multiple meanings, depending on the context being used. A Linux package means a bundle of files containing the required data to run an application, such as binaries and information about the package.
+
+Most Linux distributions have their own package managers. Each expects and handle different types of files, but all of them have the common goal of making the installation easier. They download the package, resolve dependencies, copy the needed binaries and execute any post- or pre-configuration required by the system to install a package \cite{linode2017linux}. For example, Debian has \textit{dpkg}, Red Hat has \textit{rpm} and Arch Linux has \textit{pacman} as default package managers.
+
+Another installing method is compiling from scratch. This may be very handy if the user is more advanced or the package is not in the package manager's repository. However, in this case, the user will have to manually handle dependencies, download, compile and do everything else the manager does.
+
+\subsection{CMake}
+\label {sec:cmake}
+
+Creating packages for multiple platforms requires a lot of time and effort, because it has to be compiled on each of the systems, with those system's libraries, binaries and architecture. In order to make this task easier, several cross platform building tools were created.
+
+CMake was created to fulfill the need for \lq\lq a powerful, cross-platform build environment for the Insight Segmentation and Registration Toolkit\rq\rq{} \cite{cmake2017overview}. It is \lq\lq a system that manages the build process in an operating system and in a compiler-independent manner\rq\rq{} \cite{cmake2017overview}.
+
+In a very clever way, CMake generates native compiling and configuration scripts (like makefiles for Unix and namespaces for Windows) and use them to build the package \cite{cmake2017overview}. It is also designed to be used with the native environment, unlike other building tools \cite{cmake2017overview}.
+
+The building process is controlled by files named \texttt{CMakeLists.txt}. They can have commands to generate a building environment, set needed variables, compile dependencies, link required libraries and install the project. A project that has many subdirectories, each with their own rules, can have multiple \texttt{CMakeLists.txt} to create the final product.
