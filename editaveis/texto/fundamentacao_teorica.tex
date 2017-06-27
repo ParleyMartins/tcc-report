@@ -6,7 +6,6 @@ This chapter gives an overview on some basic concepts needed by the reader to un
 \section{Games}
 \label {sec:games}
 
-
 Games have been a part of human development since their early childhood and have been part of history in its most basic ways \cite{bethke2003game}. The basic assumption of a game is that it provides a fun time, bonding and usually learning of new skills. Even though there are many games meant to play alone, they normally are meant to play with someone else (even if that someone is the computer), because the interaction with something is a key concept for any game.
 
 They can take several format, like board, card, dice games. Each format has unique strategies to win. Board games usually divide the user space in sectors, and everything is related to which sectors you are in and how you control them. Card games are related to symbols (the cards) and the possible combinations of them \cite{crawford1984art}.
@@ -22,11 +21,11 @@ Because computer games are software with audio, art and gameplay, they should fo
 \section{SDL}
 \label {sec:sdl}
 
-Simple DirectMedia Layer (SDL) is a shared library that helps developers by creating cross-platform APIs in order to make easier handling video, input, audio, threads. It's used in several games available in big platforms like \textit{Steam} and \textit{Humble Bundle} \cite{sdl2017}.
+Simple DirectMedia Layer (SDL) is a library that helps developers by creating cross-platform APIs in order to make easier handling video, input, audio, threads. It's used in several games available in big platforms like \textit{Steam} and \textit{Humble Bundle} \cite{sdl2017}. In order to be fully integrated with the developer's code, a few files are needed during the compilation: the headers, that contains definitions of functions and structures; and the library itself, that contains the binaries that will run with the main code, and may be static and shared \cite{lazyfoo2017}.
 
-A shared library is one that can be used with multiple programs. It provides common code that is reusable and can be linked at compiling time. On Linux systems they have the \textit{.so} file extension, while on Windows they have \textit{.dll} \cite{howto2017shared}.
+A shared library is one that can be used in multiple programs. It provides common code that is reusable and can be linked to the developer's code at running time. On Linux systems they have the \textit{.so} file extension, while on Windows they have \textit{.dll} \cite{howto2017shared}. In this case, the library code is not merged to the main code, resulting in a smaller binary for the developer. It's required to have the library installed in the user's system, though.
 
-and has three parts needed in order to fully work when compiling one's source code, namely, header files with the definition of the functions and structures; library files that will be linked to the developer's code; binary files that will run when the
+The static library is compiled against the main source code and it's merged to it. Instead of being a dependency on the user's system, it's now a part of the distributed version of the software, resulting in a bigger binary.
 
 
 \section{Filesystem Hierarchy Standard}
@@ -69,7 +68,7 @@ The root filesystem is defined then: this should be as small as possible and it 
 
 From the directories in Table \ref{tab:directories}, \lq\lq \texttt{/usr}, \texttt{/opt} and \texttt{/var} are designed such that they may be located on other partitions or filesystems.\rq\rq{} \cite[p. 3]{allbery2015filesystem}. The \texttt{/usr} hierarchy should include shareable data, that means that every information host-specific should be placed in other directories.
 
-About the \texttt{/var} hierarchy, FHS specifies \lq\lq everything that once went into \texttt{/usr} that is written to during system operation (as opposed to installation and software maintenance) must be in \texttt{/var}.\rq\rq{}  \cite[p. 30]{allbery2015filesystem}.
+About the \texttt{/var} hierarchy, FHS specifies that \lq\lq everything that once went into \texttt{/usr} that is written to during system operation (as opposed to installation and software maintenance) must be in \texttt{/var}.\rq\rq{}  \cite[p. 30]{allbery2015filesystem}.
 
 
 \section{Repository}
@@ -77,7 +76,7 @@ About the \texttt{/var} hierarchy, FHS specifies \lq\lq everything that once wen
 
 According to the Merriam-Webster Dictionary (\citeyear{webster2017repository}), a repository is \lq\lq a place, room or container where something is deposited.\rq\rq{} A software repository is a computer, directory or server that stores all the source code for that software project. This is usually available on the Internet, but it can also be local to the developers.
 
-Repositories are also related to the version control of the source code being produced. The definition of version control is \lq\lq a system that records changes to a file or set of files over time so that you can recall specific versions later\rq\rq{} \cite{chacon2014pro}. This allows the user to compare versions, check updates, see who introduced (or removed) an issue and when and rollback to previous versions of the system \cite{chacon2014pro}. The goal is to make it easy to return to states that were working, even after changes are made after a long time.
+Repositories are also related to the version control of the source code being produced. The definition of version control is \lq\lq a system that records changes to a file or set of files over time so that you can recall specific versions later\rq\rq{} \cite{chacon2014pro}. This allows the user to compare versions, to check updates, see who introduced (or removed) an issue and to rollback to previous versions of the system \cite{chacon2014pro}. The goal is to make it easy to return to states that were working, even after changes are made after a long time.
 
 Modern version control systems allow developers to work on a distributed basis and to parallel their tasks, with the ability of \textit{branching} the repository. Those \textit{branches} are separated lines of development, that won't mess with the main one until they are merged \cite{chacon2014pro}. This feature lets developers create and test new changes before submitting them to the project stable line of work, without affecting the final product.
 
@@ -93,7 +92,7 @@ Another installing method is compiling from scratch. This may be very handy if t
 \subsection{CMake}
 \label {sec:cmake}
 
-Creating packages for multiple platforms requires a lot of time and effort, because it has to be compiled on each of the systems, with those system's libraries, binaries and architecture. In order to make this task easier, several cross platform building tools were created.
+Creating packages for multiple platforms requires a lot of time and effort, because it has to be compiled on each of the systems, with those system's libraries, binaries and architecture. In order to make this task easier, several cross-platform building tools were created.
 
 CMake was created to fulfill the need for \lq\lq a powerful, cross-platform build environment for the Insight Segmentation and Registration Toolkit\rq\rq{} \cite{cmake2017overview}. It is \lq\lq a system that manages the build process in an operating system and in a compiler-independent manner\rq\rq{} \cite{cmake2017overview}.
 

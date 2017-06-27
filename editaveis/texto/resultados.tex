@@ -59,48 +59,36 @@ A major concern when making this script was its generality. It should run succes
 
 Both of them proved me wrong as more games were tested, but were fairly easy to fix and keep the algorithm generic. For both folders, I had to modify the script to look for directories that would have similar names to those I thought were the rule. For example, \texttt{source} instead of just \texttt{src}, and \texttt{resources}, \texttt{res} and \texttt{sound} instead of just \texttt{media}. Even though this doesn't find all possible names, it follows a pattern found in most folder structures and all of the projects tested so far.
 
-Another big premise was that all games would have their main file named \texttt{main.cpp}. Even in repositories with Portuguese file names, it never occurred to me that anyone would name those files in any other way. However, a few games, specially \textit{Traveling Will} proved me wrong. Here, again, there was the option of looking for files named with similar words to \texttt{main}, but this was a terrible option in this case, because the file could have \texttt{any} name. Even if I looked for \texttt{principal.cpp} that would not guarantee anything.
+Another big premise was that all games would have their main file named \texttt{main.cpp}. Even in repositories with Portuguese file names, it never occurred to me that anyone would name those files in any other way. However, a few games, specially \textit{Traveling Will} proved me wrong. Here, again, there was the option of looking for files named with similar words to \texttt{main}, but this was a terrible option in this case, because the file could have \textit{any} name. Even if I looked for \texttt{principal.cpp} that would not guarantee anything.
 
 One other option was parsing all the source files looking for the main function, but that would slow down the building process and would be error prone. Because there were so many options, I decided to keep the script looking for \texttt{main.cpp}, even if it required to manually change the repository.
 
 
 \section{Platform}
-\label{sec:platform}
+\label {sec:platform}
+
+The team developing this first version of the platform was able to integrate Django and React with some difficulty. Both of the technologies chosen are very well established on their own. Putting them together, however, is another matter, where they had a real hard time to make everything work right. They used React as the main user interface and Django Admin package to create the administrator part of the game.
 
 The website as of now allows an administrator to upload a game, with its respective information, like supported platform, related media, and installers.
 The administrator has to manually add all the information related to a game, like developers who worked on it, awards won (if any), release date, version number, etc. Figure \ref{fig:include_game1} shows part of the screen to add a game.
-
-%Figure \ref{fig:admin_home} shows the home page with all the administrator choices.
-
-% \begin{figure}[h!]
-% \centering
-% \includegraphics[width=200px,height=\textheight,keepaspectratio]{admin_home_page}
-% \caption{Administrator home page}
-% \label{fig:admin_home}
-% \end{figure}
 
 \begin{figure}[h!]
 \centering
 \fbox{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{include_game1}}
 \caption{Include new game}
-\label{fig:include_game1}
+\label {fig:include_game1}
 \end{figure}
 
-The general public can see a list of the available games, with their uploaded pictures. The home page also shows a slide with some pictures of highlighted games. By choosing one, it's possible to see its version, official repository, release date, description, among other information. It's also possible to download the game for the available Operating Systems or comment using a Facebook account, as shown in Figure \ref{fig:game_detail}
+The general public can see a list of the available games, with their uploaded pictures. The home page also shows a slide with some pictures of highlighted games. By choosing one, it's possible to see its version, official repository, release date, description, among other information.
 
-% \begin{figure}[h!]
-% \centering
-% \includegraphics[width=200px,height=\textheight,keepaspectratio]{game_list}
-% \caption{Game list}
-% \label{fig:game_list}
-% \end{figure}
+Some other features of the platform are the possibility to download the game for the available operating systems or comment using a Facebook account, as shown in Figure \ref{fig:game_detail}. It's also possible to categorize the games and apply several filters on them. The user can search for a specific game by its name or description as well.
 
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{game_detail}
 \caption{Game detail}
-\label{fig:game_detail}
+\label {fig:game_detail}
 \end{figure}
 
 \section{Known Issues}
@@ -114,4 +102,16 @@ The building scripts have a few problems that will be fixed in the second part o
 \item when the installation works successfully, the game doesn't run properly (or at all) on some systems (tested on Arch Linux for now). Probably there are some missing libraries on the final package, but this is just a hunch and has to be proved;
 
 \item the games are running without sound, even on host systems that have full access to the sound card.
+\end{itemize}
+
+The platform also has a few issues that weren't resolved due to lack of time of the team. Some of them are described below:
+
+\begin{itemize}
+\item when an administrator tries to save a game without one or more needed fields an error occur, but all data is lost, requiring them to reenter all the information they had already typed. This may be happening because in the form validation, the team might be sending a new instance of the object instead of the one with the validation errors;
+
+\item images are being saved multiple times when filling different forms (of the same game). They think this may happen because they retrieve and save all forms instead of just one with the images;
+
+\item kernel choice is hard coded on the system;
+
+\item when reporting a bug, the request breaks on some web browsers, like Chrome. They think it must be something with the protocol being used (HTTPS, for Chrome, and HTTP for Firefox).
 \end{itemize}
