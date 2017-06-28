@@ -1,7 +1,7 @@
 \chapter{Basic Concepts}
 \label {sec:basic_concepts}
 
-This chapter gives an overview on some basic concepts needed by the reader to understand this work. It starts talking about games and game design, then talks a little about the Linux Filesystem, that helps developers to understand where their binaries and other files should go on the user's system. At the end, there are brief words on repositories and packages.
+This chapter gives an overview on some basic concepts needed by the reader to understand this work. It starts talking about games and the SDL library, then talks a little about the Linux Filesystem, that helps developers to understand where their binaries and other files should go on the user's system. At the end, there are brief words on repositories and packages.
 
 \section{Games}
 \label {sec:games}
@@ -14,9 +14,6 @@ Since computers were invented they completely changed the gaming world. New kind
 
 Because computer games are software with audio, art and gameplay, they should follow a software development method, any one chosen by the team. This is something that most game developers avoid \cite{bethke2003game}, because they see their work as pure art. Although that is certainly true, a game has everything a \lq\lq normal software\rq\rq{} has and more. Using software engineering techniques (adapted to their needs, naturally) will result on a better game and better interaction with the final user \cite{pressman2009software}
 
-\section{Game Platforms}
-\label {sec:game_platforms}
-
 
 \section{SDL}
 \label {sec:sdl}
@@ -25,9 +22,7 @@ Simple DirectMedia Layer (SDL) is a library that helps developers by creating cr
 
 A shared library is one that can be used in multiple programs. It provides common code that is reusable and can be linked to the developer's code at running time. On Linux systems they have the \textit{.so} file extension, while on Windows they have \textit{.dll} \cite{howto2017shared}. In this case, the library code is not merged to the main code, resulting in a smaller binary for the developer. It's required to have the library installed in the user's system, though.
 
-The static library is compiled against the main source code and it's merged to it. Instead of being a dependency on the user's system, it's now a part of the distributed version of the software, resulting in a bigger binary.
-
-The new license on SDL 2, zlib, allows users to use SDL as a static library, however they are not encouraged to.
+The static library is compiled against the main source code and it's merged to it. Instead of being a dependency on the user's system, it's now a part of the distributed version of the software, resulting in a bigger binary. The new license on SDL 2, \textit{zlib}, allows users to use SDL as a static library, however they are not encouraged to.
 
 
 \section{Filesystem Hierarchy Standard}
