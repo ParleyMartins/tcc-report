@@ -42,38 +42,6 @@ Professor Edson, that was ministering the course until last year, and Mr. Matheu
 
 After that, I was responsible for checking the status of the games, gathering information such as which of them compiled, which SDL version they used, which ones had licenses. Table \ref{tab:first_games} shows these initial results.
 
-% \begin{center}
-% \begin{longtable}{lcccc}
-% \caption{Initial status of the selected games}
-% \label{tab:first_games}
-
-% % \rowcolors{2}{gray!30}{white}
-% % \toprule
-% \textbf{Name} & \textbf{Source?} & \textbf{License?} & \textbf{SDL} & \textbf{Compiles?} \\
-% % \midrule
-% Deadly Wish & y & n & 2 & n \\
-% Strife of Mythology & y & n & 2 & y \\
-% Travelling Will & y & n & 2 & y \\
-% 7 Keys & y & MIT & 2 & n \\
-% Babel & y & GPL 2 & 2 & y \\
-% Terracota & y & MIT & 2 & n \\
-% Dauphine & y & n & 2 & n \\
-% Imagina na Copa & y & n & 2 & y \\
-% Kays Against the World & y & n & 2 & y \\
-% Ankhnowledge & y & GPL 2 & 1 & y \\
-% The Last World War & n & - & - & - \\
-% Post War & y & n & 1 & y \\
-% War of the nets & y & GPL 2 & 2 & y \\
-% Jack the Janitor & y & GPL 3 & 1 & y \\
-% Drawing Attack & n & - & - & - \\
-% Earth Attacks & n & - & - & - \\
-% Emperor vs Aliens & y & n & 1 & y \\
-% Ninja Siege & y & GPL 2 & 1 & y \\
-% Space monkeys & y & GPL 2 & 1 & n \\
-% Tacape & n & - & - & - \\
-% % \bottomrule
-% \end{longtable}
-% \end{center}
 
 \begin{table}[h!]
 \centering
@@ -167,12 +135,28 @@ I added the directory \texttt{Qt} to use the Qt Installer Framework without havi
 \section{Platform Development}
 \label{sec:platform}
 
-The first version of the platform was developed using mixed development methods. During the first half of the semester, the Rational Unified Process was used. For the next part, Scrum and XP were chosen. This choice of development framework is because of how the courses are divided.
+The first version of the platform was developed using mixed development methods. During the first half of the semester, the Rational Unified Process  and the PMBOK were used. For the next part, Scrum and XP were chosen. This choice of development framework is because of how the courses are divided.
 
 Throughout the RUP part of the development, the team created several documents to aid the development cycle, such as, vision, architecture document, class diagram, use case diagram, use case specification, test case specification.
 
-These documents helped the team to understand the system requirements and how they should be implemented. The most experienced members also helped the others to learn the technologies to develop the website.
+These documents helped the team to understand the system requirements and how they should be implemented as seen in Figure \ref{fig:class_diagram}. The most experienced members also helped the others to learn the technologies to develop the website.
 
+The team reported they had some problems in their inner communication on this first part of the project. They are 13 people, while 5 were the managers and 8 were developers. For people without any experience in managing and with a very detailed and demanding process, like RUP, they said it was hard to balance everything.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{class_diagram}
+\caption{Class Diagram of the Platform \cite{plataforma2017arquitetura}}
+\label{fig:class_diagram}
+\end{figure}
+
+As the second part of the development started, they had to work on a totally different mindset, with new roles and documents needed. Instead of having managers, the team had now Scrum Master, Product Owner and the Developing team \cite{agile422017}. A Scrum Master is the responsible for protecting the team, making sure knowledge is being shared and Scrum is being followed \cite{scrumalliance2017}. It's important to notice that this is not equivalent to a traditional manager, that usually only bosses around the team, not caring about the people.
+
+Product Owner is the one who will say the product value, sets the priorities and decides what need be done \cite{agile422017}. They must assure the work meets their expectations without controlling the development team \cite{scrumalliance2017}. The Development Team are the people who will actually do the work, they don't have a manager, they act collectively and decide how they will achieve what has to be done \cite{scrumalliance2017}.
+
+The team developing the platform reported that the transition from one process to the other was a little hard, especially the role change, holding the meetings and making sure Scrum/XP were being followed correctly. The communication problem they had on the first part was mitigated in this second part of the semester, but their main difficulty now was scoring the User Stories.
+
+The team also declared that, beyond all the struggling that has been detailed above, they were too naive to choose React and Django for the development of the platform. This integration is not something very trivial for experienced programmers in both frameworks, it was even harder for developers that didn't have any experience with any of them. They say it was hard to manage everything that had to be done, learn the new technologies and still merge them together.
 
 \section{Tools}
 \label{sec:tools}
