@@ -1,7 +1,7 @@
 \chapter{Basic Concepts}
 \label {sec:basic_concepts}
 
-This chapter gives an overview on some basic concepts needed by the reader to understand this work. It starts talking about games and the SDL library, then talks a little about the Linux Filesystem, that helps developers to understand where their binaries and other files should go on the user's system. At the end, there are brief words on repositories and packages.
+This chapter gives an overview on some basic concepts needed by the reader to understand this work. It starts talking about games and the SDL library, then talks a little about the GNU/Linux Filesystem, that helps developers to understand where their binaries and other files should go on the user's system. At the end, there are brief words on repositories and packages.
 
 \section{Games}
 \label {sec:games}
@@ -12,23 +12,25 @@ They can take several formats, like board and card games, for example. Each form
 
 Since computers were invented they completely changed the gaming world. New kind of games, like \textit{first person shooter} and \textit{tower defense}, were created and made popular, while it became possible to play virtually the ones that required a physical board or a lot of people. With the Internet, it became even easier to own and play different games. It's also possible to play any kind of game with anyone in the world.
 
-Because computer games are software with audio, art and gameplay, they should follow a software development method, any one chosen by the team. This is something that most game developers avoid, because they see their work as pure art \cite{bethke2003game}. Although that is certainly true, a game has everything a \lq\lq normal software\rq\rq{} has and more, therefore requiring a known process or method. Using software engineering techniques (adapted to their needs, naturally) will result on a better game and better interaction with the final user \cite{pressman2009software}.
+Because computer games are software with audio, art and gameplay, they should follow a software development method, any one chosen by the team. This is something that most game developers avoid, because they see their work as pure art \cite{bethke2003game}. Although that is certainly true, a game has everything a \lq\lq normal software\rq\rq{} has and more, therefore requiring a known development process or method. Using software engineering techniques (adapted to their needs, naturally) will result on a better game and better interaction with the final user \cite{pressman2009software}.
 
 
 \section{SDL}
 \label {sec:sdl}
 
+Digital games have many things happening at once. There is sound playing, they must be able to receive and response to inputs from the player, coming from different sources sometimes, and, while all this is happening, they must also keep rendering the scenario and show the statistics of the user. To simplify that, developers use several libraries in their source codes, one of the most popular being SDL.
+
 Simple DirectMedia Layer (SDL) is a library that helps developers by creating cross-platform APIs in order to make easier handling video, input, audio, threads. It's used in several games available in big platforms like \textit{Steam} and \textit{Humble Bundle} \cite{sdl2017}. In order to be fully integrated with the developer's code, a few files are needed during the compilation: the headers, that contains definitions of functions and structures; and the library itself, that contains the binaries that will run with the main code, and may be static and shared \cite{lazyfoo2017}.
 
-A shared library is one that can be used in multiple programs. It provides common code that is reusable and can be linked to the developer's code at running time. On Linux systems they have the \textit{.so} file extension, while on Windows they have \textit{.dll} \cite{howto2017shared}. In this case, the library code is not merged to the main code, resulting in a smaller binary for the developer. It's required to have the library installed in the user's system, though.
+A shared library is one that can be used in multiple programs. It provides common code that is reusable and can be linked to the developer's code at running time. On GNU/Linux systems they have the \textit{.so} file extension, while on Windows they have \textit{.dll} \cite{howto2017shared}. In this case, the library code is not merged to the main code, resulting in a smaller binary for the developer. It's required to have the library installed in the user's system, though.
 
-The static library is compiled against the main source code and it's merged to it. Instead of being a dependency on the user's system, it's now a part of the distributed version of the software, resulting in a bigger binary. The new license on SDL 2, \textit{zlib}, allows users to use SDL as a static library, however they are not encouraged to.
+The static library is compiled against the main source code and it's merged to it. Instead of being a dependency on the user's system, it's now a part of the distributed version of the software, resulting in a bigger binary. The new license on SDL 2, \textit{zlib}, allows users to use SDL as a static library, however they are not encouraged to, because that wouldn't provide several things the user might need. For example, security updates that come on the new patches, wouldn't be available to a game that has SDL built into it \cite{ryangordon2017}.
 
 
 \section{Filesystem Hierarchy Standard}
 \label {sec:fhs}
 
-The Filesystem Hierarchy Standard was proposed on February 14, 1994 as an effort to rebuild the file and directory structure of Linux and, later, all Unix-like systems. It helps developers and users to predict the location of existing and new files on the system, by proposing how minimum files, directories and guiding principles \cite{allbery2015filesystem}.
+When installing a game, it must go somewhere in the filesystem of the user. For games developed to run in the GNU/Linux environments, they should follow the patterns found in FHS. The Filesystem Hierarchy Standard (FHS) was proposed on February 14, 1994 as an effort to rebuild the file and directory structure of Linux and, later, all Unix-like systems. It helps developers and users to predict the location of existing and new files on the system, by proposing how minimum files, directories and guiding principles \cite{allbery2015filesystem}.
 
 The Hierarchy starts defining types of files that can exist in a system. Whenever files differ in this classification, they should be located in different parts of the system: \textit{shareable} files are the ones that can be accessed from a remote host, while \textit{unshareable} are files that have to be on the same machine to be obtained. \textit{Static} files are the ones that aren't supposed to be changed without administrator privileges, whereas \textit{variable} ones can be changed by regular users \cite{allbery2015filesystem}
 
@@ -63,13 +65,15 @@ The root filesystem is defined then: this should be as small as possible and it 
 \end{table}
 
 
-From the directories in Table \ref{tab:directories}, \lq\lq \texttt{/usr}, \texttt{/opt} and \texttt{/var} are designed such that they may be located on other partitions or filesystems.\rq\rq{} \cite[p. 3]{allbery2015filesystem}. The \texttt{/usr} hierarchy should include shareable data, that means that every information host-specific should be placed in other directories.
+From the directories in Table \ref{tab:directories}, \lq\lq \texttt{/usr}, \texttt{/opt} and \texttt{/var} are designed such that they may be located on other partitions or filesystems.\rq\rq{} \cite{allbery2015filesystem}. The \texttt{/usr} hierarchy should include shareable data, that means that every information host-specific should be placed in other directories. About the \texttt{/var} hierarchy, FHS specifies that \lq\lq everything that once went into \texttt{/usr} that is written to during system operation (as opposed to installation and software maintenance) must be in \texttt{/var}.\rq\rq{} \cite{allbery2015filesystem}.
 
-About the \texttt{/var} hierarchy, FHS specifies that \lq\lq everything that once went into \texttt{/usr} that is written to during system operation (as opposed to installation and software maintenance) must be in \texttt{/var}.\rq\rq{}  \cite[p. 30]{allbery2015filesystem}.
+The Hierarchy has some optional defined places to put the binaries of the installed games, like \texttt{/usr/games}, or \texttt{/usr/local/games}. The difference between the two is that the former is where the package manager installs, while the other is usually where packages compiled locally are installed \cite{blfsdevelopmentteam2017}. Variable data, as usual, should be inserted into the the \texttt{/var} filesystem, under \texttt{/var/games}.
 
 
 \section{Repository}
 \label {sec:repository}
+
+Game development, as has been said, demands special care with the source code. Like any software, when a bug is accidentally inserted, there should be an easy way to return to a previous state, where that didn't happen. The solution to this problem is using a repository for the source code.
 
 According to the Merriam-Webster Dictionary (\citeyear{webster2017repository}), a repository is \lq\lq a place, room or container where something is deposited.\rq\rq{} A software repository is a computer, directory or server that stores all the source code for that software project. This is usually available on the Internet, but it can also be local to the developers.
 
