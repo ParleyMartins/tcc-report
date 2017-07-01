@@ -1,14 +1,14 @@
 \chapter{Methodology}
 \label{sec:methodology}
 
-This chapter explains what was and will be done within the duration of the whole project. Section \ref{sec:project_overview} describes the overview of the whole project. Section \ref{sec:task_division} elucidates how the tasks were divided among all the involved for this first part of the project, while  \ref{sec:game_gathering} shows how and which games were selected to first test the scripts. Section \ref{sec:packaging} demonstrates the folder structure to create the packages. Section \ref{sec:platform_development} talks about the development of the platform. The chosen tools for the project are specified in \ref{sec:tools}
+This chapter explains what was and will be done within the duration of the whole project. Section \ref{sec:project_overview} describes the overview of the whole project. Section \ref{sec:task_division} elucidates how the tasks were divided among all the involved for this first part of the project, while  \ref{sec:game_gathering} shows how and which games were selected to first test the scripts. Section \ref{sec:packaging} demonstrates the folder structure to create the packages. Section \ref{sec:platform_development} talks about the development of the platform. The chosen tools for the project are specified in Section \ref{sec:tools}
 
 \section{Project Overview}
 \label{sec:project_overview}
 
 It has the main goal of creating a platform with all the games developed in the university's courses related to games. The games that will be available must have all their assets and required libraries in a single package that runs in Linux distributions without the need of installing any other package; they also must have a graphical installer for users without technical knowledge.
 
-In order to achieve this goal, the games developed will be cataloged and cloned to a main GitHub organization (whenever possible). Two scripts will be created then, one to build games using SDL 1 and the other for SDL 2. The platform itself will be developed while all the other activities take place.
+In order to achieve this goal, the games developed will be cataloged and cloned to a main GitHub organization (whenever possible). Two scripts will be created then, one to build games using SDL 1 and the other for SDL2. The platform itself will be developed while all the other activities take place.
 
 After that, a script will be generated to replicate the packaging system to all of the other games, making the necessary adjustments along the way. The games will be deployed to the website with all of their information and available installers.
 
@@ -28,7 +28,7 @@ This project is totally collaborative, it depends and relies on different classe
 
 Professor Edson and Mr. Faria were responsible for first cataloging the existing games. They will remain as helpers in the packaging system and main stakeholders for the team developing the website.
 
-The team \textit{Plataforma de Jogos UnB} from the courses \textit{M\'etodos de Desenvolvimento de Software} (Software Development Methods) and \textit{Gest\~ao de Portfolios e Projetos} (Management of Portfolios and Projects) is in charge of creating the first version of the actual website with some of the features desired.
+The team \textit{Plataforma de Jogos UnB} from the courses \textit{M\'etodos de Desenvolvimento de Software} (Software Development Methods) and \textit{Gest\~ao de Portfolios e Projetos} (Management of Portfolios and Projects) is in charge of creating the first version of the actual website with some of the features desired. The names of all the members are in the Appendix \ref{sec:members_gpp_mds}.
 
 The scripts creation and their application on the games, their integration with the platform, as well as the evolution and maintenance of the platform after the courses are finished will be my responsibility.
 
@@ -36,9 +36,12 @@ The scripts creation and their application on the games, their integration with 
 \section{Game Gathering}
 \label{sec:game_gathering}
 
-The games selected for this first part of the project were the ones developed in this department, \textit{Faculdade UnB Gama} that is the Gama Campus of the University, since the course \textit{Introdu\c{c}\~ao aos Jogos Eletr\^onicos} (Introduction to Electronic Games) has been created here in the first semester of 2012. Because this work is being mostly held at FGA, and all the games developed here are compiled and run on Linux distributions, these were selected as first games for the platform. Another reason for this choice is the proximity with the students who created those games.
+The games selected for this first part of the project were the ones developed in this department, \textit{Faculdade UnB Gama} that is the Gama Campus of the University, since the course \textit{Introdu\c{c}\~ao aos Jogos Eletr\^onicos} (Introduction to Electronic Games) has been created here in the first semester of 2012. Professor Ricardo Jacobi was the first to teach the course, but it wasn't possible to contact him or get the games developed in that term. Professor Edson taught the course after that, until 2016. It has been assumed by Mr. Matheus Faria, since the beginning of this year.
 
-Professor Edson, that was ministering the course until last year, and Mr. Matheus Faria, the new teacher, first contacted the students and asked them to post their codes to GitHub. They cloned them into the \texttt{fgagamedev}\footnote{ \href{https://github.com/fgagamedev}{https://github.com/fgagamedev/} } GitHub organization.
+Because this work is being mostly held at FGA, and all the games developed here are compiled and run on Linux distributions, these were selected as first games for the platform. Another reason for this choice is the proximity with the students who created those games.
+
+Professor Edson and Mr. Faria, first contacted the students and asked them to post their codes to GitHub. They cloned them into the \texttt{fgagamedev}\footnote{ \href{https://github.com/fgagamedev}{https://github.com/fgagamedev/} } GitHub organization.
+
 
 After that, I was responsible for checking the status of the games, gathering information such as which of them compiled, which SDL version they used, which ones had licenses. Table \ref{tab:first_games} shows these initial results.
 
@@ -76,7 +79,7 @@ Tacape & n & - & - & - \\
 \end{tabular}
 \end{table}
 
-Out of 20 games created in \textit{Introdu\c{c}\~ao aos Jogos Eletr\^onicos}, 4 didn't have a known repository and 8 didn't have a license that allowed us to change them at that time. Mr. Faria and I were responsible for finding unknown games and getting the missing licenses. As result of this task, \textit{The Last World War} was added and 5 other had licenses acquired as shown in Table \ref{tab:final_games}.
+Out of 20 games created in \textit{Introdu\c{c}\~ao aos Jogos Eletr\^onicos} while Professor Edson taught it, 4 didn't have a known repository and 8 didn't have a license that allowed us to change them at that time. Mr. Faria and I were responsible for finding unknown games and getting the missing licenses. As result of this task, \textit{The Last World War} was added and 5 other had licenses acquired as shown in Table \ref{tab:final_games}.
 
 \begin{table}[h!]
 \centering
@@ -153,16 +156,18 @@ As the second part of the development started, they had to work on a totally dif
 
 Product Owner is the one who will say the product value, sets the priorities and decides what need be done \cite{agile422017}. They must assure the work meets their expectations without controlling the development team \cite{scrumalliance2017}. The Development Team are the people who will actually do the work, they don't have a manager, they act collectively and decide how they will achieve what has to be done \cite{scrumalliance2017}.
 
+For the next semester, I'll be the responsible the development and maintenance of the platform. It's intended to use Agile Practices for the rest of the development, whenever possible, but that won't be a requirement, since I'll be mostly working alone on these tasks. A more detailed account of what will be done can be found in Chapter \ref{sec:future_work}.
+
 
 \section{Tools}
 \label{sec:tools}
 
-CMake is the chosen framework for generating the packages. It's suppose to help developers creating applications that run in several platforms, like Linux, Mac and Windows. It offers a lot options for that, like cross compilation and compilation directed to each of them. It is distributed under OSI-approved BSD 3-clause License and the minimum required version is 2.8.
+CMake was the chosen framework for generating the packages. It's suppose to help developers creating applications that run in several platforms, like Linux, Mac and Windows. It offers a lot options for that, like cross compilation and compilation directed to each of them. It is distributed under OSI-approved BSD 3-clause License and the minimum required version is 2.8.
 
 For the graphical installer, Qt Installer Framework has been selected. It is easy to use and offers a nice GUI with all the necessary steps for installing a package, like license agreement and path choice. This framework is distributed under LGPLv3 license and the version being used is 2.0.5.
 
 For the website development, Django was picked because of the previous knowledge the group had with it. To make the front end of the application, Facebook's React was chosen for the flexibility it gives to the user interface. They are both very scalable, have a big support on the community and are released under the BSD 3-clause license. The versions being used are the last ones at the beginning of the project, namely, 1.11.1, for Django, and 15.5.4, for React.
 
-Python is the language for the packaging script because it must integrate with the Django webapp and its powerful easy to use API. It will also be the language for any other needed scripts. The least required version is 3.4, and it's licensed under an OSI-approved open source license.
+Python was the language for the packaging script because it must integrate with the Django webapp and its powerful easy to use API. It will also be the language for any other needed scripts. The least required version is 3.4, and it's licensed under an OSI-approved open source license.
 
 To develop the scripts, a virtual machine running Debian Jessie was used. The VM was powered by Vagrant, version 1.9, that allows easy environment virtualization. It also enables a developer to test in several operating systems, which is required for the nature of this project. The computer hosting the script and used to its development has an Intel Core i5-6200U 2.3 GHz processor. It also has 8 GB of RAM and an NVIDIA GeForce 940M graphic processor.
