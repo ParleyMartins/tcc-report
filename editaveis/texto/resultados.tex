@@ -1,63 +1,15 @@
-\chapter[Partial Results]{Partial Results}
+\chapter[Results]{Results}
 \label{sec:results}
 
-This chapter explains the results obtained so far with the project development. Section \ref{sec:building_scripts} shows the results of the building scripts and the problems to create them, while Section \ref{sec:platform} explains the same about the platform. Section \ref{sec:issues} outlines some problems, from both the scripts and the platform, that have to be fixed in the next part of the project.
+This chapter explains the results obtained so far with the project development.
 
 
-\section{The Building Scripts}
-\label{sec:building_scripts}
+\section{Template for Games}
+\label{sec:template_for_games}
 
-The building scripts were tested against half of the 16 available games. Table \ref{tab:script_games} shows which games were tested and the results of them. It was a success, because all the installers were created correctly for all of them (both GUI/Qt and \textit{.deb}). For some games, even with the correct compilation, they wouldn't run as expected, due to logical errors in their source code.
+The main goal of this work was to generate a template that allowed the game developers from the courses of this University to create their games and easily generate packages to install in major Operating Systems, namely, Windows, macOS, Debian-based and Red Hat based distributions of GNU/Linux. This template was made by professor Edson and I had the responsibility of evolving, maintaining and testing it in a few games, throughout all the platforms.
 
-The game \textit{Space Monkeys} compiled correctly, however upon running it, the user couldn't do anything and the screens weren't precisely rendered. \textit{War of the Nets}, even compiling without errors, had a segmentation fault after a few seconds with the game open.
-
-\begin{table}[h!]
-\centering
-\caption{Scripts results}
-\label{tab:script_games}
-\begin{tabular}{lccccc}
-\toprule
-\textbf{Game} & \multicolumn{1}{l}{\textbf{Compiles?}} & \multicolumn{1}{l}{\textbf{.deb}} & \multicolumn{1}{l}{\textbf{GUI/Qt}} & \multicolumn{1}{l}{\textbf{Runs?}} & \multicolumn{1}{l}{\textbf{SDL}} \\
-\midrule
-Ankhnowledge & y & y & y & y & 1 \\
-Post War & y & y & y & y & 1 \\
-Jack the Janitor & y & y & y & y & 1 \\
-Emperor vs Aliens & y & y & y & y & 1 \\
-Ninja Siege & y & y & y & y & 1 \\
-Space monkeys & y & y & y & n* & 1 \\
-War of the Nets & y & y & y & n & 2 \\
-Travelling Will & y & y & y & y & 2 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The building scripts are very similar, the only difference is that one builds games for SDL2 while the other uses SDL 1 (and their respective libraries). They work by cloning the repository and copying the required files to use CMake as seen in Algorithm \ref{alg:sdl}. This is the tool that actually compiles and builds everything. Because CMake generates a lot of files that are only used while it's running, professor Edson made a few more scripts to separate everything into folders and generate the installers.
-
-\begin{algorithm}[h!]
-\caption{Algorithm to build the games}
-\label{alg:sdl}
-\algblock[Name]{Start}{End}
-\begin{algorithmic}
-\Start
-\State {$project \gets $} \Call{init}{$url,branch$} \Comment{Clone repository and set the project}
-\State \Call{copy\_files}{$default, project$} \Comment{Copy templates}
-\State {$project.media\_dir \gets $} \Call{find\_media}{}\Comment{Find the media folder}
-\State {$project.source\_dir \gets $} \Call{find\_source}{}\Comment{Find the source folder and \textit{.cpp} files}
-\State \Call{replace\_info}{$default, project$} \Comment{Replace template defaults}
-\State \Call{rename}{$default, project$} \Comment{Rename some files}
-\State \Call{build}{$project$} \Comment{Call the build script}
-\State \Call{create\_installers}{$project$} \Comment{Create the installers}
-\End
-\end{algorithmic}
-\end{algorithm}
-
-A major concern when making this script was its generality. It should run successfully with as many games as possible, requiring only a few tweaks in the source code or folder structure of the repository, if any. Starting with \textit{Jack the Janitor}, the example Professor Edson had made first, the  building script assumed a lot of things, mostly due to my inexperience with games and the folder structure adopted by the students. For example, in the initial versions, I thought all the \textit{.cpp} files would always be in a folder called \texttt{src}. Another assumption was that all media would be in a \texttt{media} folder.
-
-Both of them proved me wrong as more games were tested, but were fairly easy to fix and keep the algorithm generic. For both folders, I had to modify the script to look for directories that would have similar names to those I thought were the rule. For example, \texttt{source} instead of just \texttt{src}, and \texttt{resources}, \texttt{res} and \texttt{sound} instead of just \texttt{media}. Even though this doesn't find all possible names, it follows a pattern found in most folder structures and all of the projects tested so far.
-
-Another big premise was that all games would have their main file named \texttt{main.cpp}. Even in repositories with Portuguese file names, it never occurred to me that anyone would name those files in any other way. However, a few games, specially \textit{Traveling Will} proved me wrong. Here, again, there was the option of looking for files named with similar words to \texttt{main}, but this was a terrible option in this case, because the file could have \textit{any} name. Even if I looked for \texttt{principal.cpp} that would not guarantee anything.
-
-One other option was parsing all the source files looking for the main function, but that would slow down the building process and would be error prone. Because there were so many options, I decided to keep the script looking for \texttt{main.cpp}, even if it required to manually change the repository.
+The template supports creating two versions of the executable: \texttt{debug}, that is supposed to be used on the development environment; and \texttt{release}, that is compiled with optimization flags and is supposed to be sent in packages to the users. It also has support for the most common SDL libraries used in game developing, like SDL, SDL\_image, SDL\_mixer. Each of these libraries is available for all the platforms, with the specifics for each inside of them.
 
 
 \section{Platform}

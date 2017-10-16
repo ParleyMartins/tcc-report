@@ -1,0 +1,48 @@
+[Forwarded from Matheus Black UnB]
+Texto soa como pessoal e pouco cientifico
+  People also have the tendency to relate things that are done inside the classes to things that have no use in real life, therefore expandable.
+  This project was created to give visibility
+
+1.1 talks a little about the GNU/Linux Filesystem ====> filesystem
+  Also needs to explore MacOS and Windows
+
+
+1.3 Where it goes the media? Should go somewhere?
+  "Variable data, as usual, should be inserted into the the /var filesystem, under /var/games."
+  Put examples
+
+1.5.1 CMake was open-soruce?
+
+
+2.6 The VM was powered by Vagrant, version 1.9, that allows easy environment virtualization
+
+
+3.1 "One other option was parsing all the source files looking for the main function, but that would slow down the building process and would be error prone. Because there were so many options, I decided to keep the script looking for main.cpp, even if it required to manually change the repository."
+  - It is not error prone, is the correct way
+  - Slow down? Is performance an issue or a metric
+
+
+FUTURE WORK
+Another goal is to allow the user to link their GitHub repository to the website, letting them build the packages for the game automatically with GitHub hooks. The game will then, be available in the website without the need for a manual uploa  from an administrator.
+  - Not an intresting feature
+  - Although the integration is
+
+
+ make an installer (.exe) to run on Windows 10 (maybe
+with some backwards compatibility if possible).
+  - exe is not a installer, try msi
+
+
+
+Considerações
+Mais engenheiro, menos observador. Ter mais controle sobre o projeto como um todo, já que o seu trabalho é menos cientifico e mais engenheiro
+
+O script é legal, mas só vai ser rodado pros projetos de agora. Talvez algo que perdure pra sempre. Uma estrutura de desenvolvimento de jogos com SDL
+
+Empcotamento ta sendo com o CPack?
+
+Vai incluir a SDL compilada no pacote? Se não, como vai lidar no caso do windows? Se sim, pensa em contribuir com a SDL_image ir pra CMake? O quanto isso afeta o tamanho do pacote?
+
+Coisas para olhar com cuidado:
+- Cross compile
+- DMG e MSI

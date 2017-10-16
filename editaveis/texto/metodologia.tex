@@ -115,25 +115,35 @@ Space monkeys & GPL 2 & 1 & n \\
 \section{Packaging}
 \label{sec:packaging}
 
-To create the installers for the games, professor Edson decided to use a folder structure that would be easy to understand to anyone familiar with Linux. Apart from the original directories in the repository, he added the folders \texttt{bin}, \texttt{dist}, \texttt{lib} and \texttt{linux}.
+The template for packaging was created by professor Edson is based on two main directives, modularisation and platform independence. The first one is related to dividing the directories by topic, meaning that, each folder will be responsible for one thing and all the files inside of them should be related to that specific thing. The second directive, platform independence, is to make the development for multiple platforms easy. Each directory will have a division for each of the platforms.
+
+To achieve the template modularision, professor Edson decided to use a folder structure that would be easy to understand to anyone familiar with GNU/Linux FHS, with a few additions. Apart from the original directories in the repository, he added the folders \texttt{bin}, \texttt{dist}, \texttt{lib} and \texttt{scripts}. This structure is represented in Figure \ref{fig:folder_structure}
 
 \begin{itemize}
-\item \texttt{linux} would contain the scripts needed during compilation and also helpers to run the game after its building. When other OSs are added, there will be folders with the specifics for each one of them;
-\item \texttt{lib} initially consists of the source of the libraries used by the games. They are built inside this folder as well, according to the operating system the package is being built for;
-\item \texttt{dist} includes the final installers, according to each supported OS. These can be distributed and installed in any supported computer;
-\item \texttt{bin} has the compiled libraries and the game executable.
+\item \texttt{scripts} this is where the scripts to build, package and distribute the binaries for all the platforms will live. It also has a subdirecoty called \texttt{utils} that holds some specific platform scripts, like generating each installer, or gather information about the host OS;
+\item \texttt{lib} All the third-party libaries should live here. The scripts to build the code are already set to look for libs inside this directory, being each subdirectory a dependency;
+\item \texttt{dist} This contains the files needed to generate the packages for each platform;
+\item \texttt{bin} has all needed libraries and the game executable.
 
 \end{itemize}
 
-I added the directory \texttt{Qt} to use the Qt Installer Framework without having to install it system-wide. Figure \ref{fig:folder_structure} shows the folders and their contents to a SDL 1 project.
-
 \begin{figure}[h!]
 \centering
-% \includegraphics[width=150px,height=350px]{folder_structure}s
-\includegraphics[width=150px,height=350px]{folder_structure2}
+\includegraphics[scale=0.7]{folder_structure}
 \caption{Folder tree}
 \label{fig:folder_structure}
 \end{figure}
+
+The second directive was met by dividing some of the directories into platform limited directories, making the code that lives there accessible only when running on that individual platform. Any file outside the platform directory is considered generic, and can be used for any Operating System. For example, when running on Windows, the compiler would only access generic files and Windows specific ones, like \texttt{dlls}. The same thing happens for macOS and GNU/Linux systems. This division is represented inside the \texttt{lib} directory in Figure \ref{folder_structure_lib}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{folder_structure_lib}
+\caption{Platform and library division}
+\label{fig:folder_structure_lib}
+\end{figure}
+
+Inside these folders there is yet another division to make sure the template can generate different
 
 \section{Platform Development}
 \label{sec:platform_development}
