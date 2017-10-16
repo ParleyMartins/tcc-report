@@ -134,7 +134,7 @@ To achieve the template modularision, professor Edson decided to use a folder st
 \label{fig:folder_structure}
 \end{figure}
 
-The second directive was met by dividing some of the directories into platform limited directories, making the code that lives there accessible only when running on that individual platform. Any file outside the platform directory is considered generic, and can be used for any Operating System. For example, when running on Windows, the compiler would only access generic files and Windows specific ones, like \texttt{dlls}. The same thing happens for macOS and GNU/Linux systems. This division is represented inside the \texttt{lib} directory in Figure \ref{folder_structure_lib}.
+The second directive was met by dividing some of the directories into platform limited directories, making the code that lives there accessible only when running on that individual platform. Any file outside the platform directory is considered generic, and can be used for any Operating System. For example, when running on Windows, the compiler would only access generic files and Windows specific ones, like \texttt{dlls}. The same thing happens for macOS and GNU/Linux systems. This division is represented inside the \texttt{lib} directory in Figure \ref{fig:folder_structure_lib}.
 
 \begin{figure}[h!]
 \centering
@@ -143,7 +143,11 @@ The second directive was met by dividing some of the directories into platform l
 \label{fig:folder_structure_lib}
 \end{figure}
 
-Inside these folders there is yet another division to make sure the template can generate different
+As also seen in Figure \ref{fig:folder_structure_lib}, inside each platform folder (only for libraries) there is yet another division to make sure the template can generate different versions of the program for \texttt{debug} and \texttt{release}. The binaries that live on \texttt{release} are stripped of all debug symbols, resulting in smaller versions of those dependencies. Library headers go inside \texttt{include} and a compressed file with the source goes inside \texttt{src}.
+
+
+Another main concern in the template creation was making a small dependency chain, using as many native tools as possible. For example, the chosen compiler was GCC for Linux, Visual Studio for Windows and CLang for macOS. To control the generation of executables, GNU Make was chosen. The scripts were all written in Bash (native for macOS and Linux).
+
 
 \section{Platform Development}
 \label{sec:platform_development}
