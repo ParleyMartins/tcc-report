@@ -4,12 +4,23 @@
 This chapter explains the results obtained so far with the project development.
 
 
-\section{Template for Games}
-\label{sec:template_for_games}
+\section{Template}
+\label{sec:template}
 
-The main goal of this work was to generate a template that allowed the game developers from the courses of this University to create their games and easily generate packages to install in major Operating Systems, namely, Windows, macOS, Debian-based and Red Hat based distributions of GNU/Linux. This template was made by professor Edson and I had the responsibility of evolving, maintaining and testing it in a few games, throughout all the platforms.
+One of the goals of this work was to generate a template that allowed the game developers from the courses of this University to create their games and easily generate packages to install in major Operating Systems, namely, Windows, macOS, Debian-based and Red Hat based distributions of GNU/Linux. This template was made by professor Edson.  I had the responsibility of testing it in a few games, evolving and maintaining it throughout all the platforms.
 
-The template supports creating two versions of the executable: \texttt{debug}, that is supposed to be used on the development environment; and \texttt{release}, that is compiled with optimization flags and is supposed to be sent in packages to the users. It also has support for the most common SDL libraries used in game developing, like SDL, SDL\_image, SDL\_mixer. Each of these libraries is available for all the platforms, with the specifics for each inside of them.
+The template consists of a series of Bash scripts, Makefile, libraries and a directory structure that is supposed to be followed by anyone who wants to use it. It is intended to be used as a template for new games developed in the courses taught at this University and it contains the most common libraries in game development, like SDL, SDL\_image, SDL\_mixer.
+
+Currently, there are seven required files on the root directory, specifically, \texttt{LICENSE}, \texttt{Makefile.common}, \texttt{Makefile.macos}, \texttt{Makefile.windows}, \texttt{Makefile.linux}, \texttt{Vagranfile}, \texttt{changelog}, and \texttt{metadata.ini}. These files assure compilation is possible in any platform and also give some information about the project. An explanation of what each of them does and what information each may or may not have is given bellow. Some extra optional files are also explained.
+
+\begin{itemize}
+	\item \texttt{LICENSE} \emph{Editable.} This should be the text of the license or a reference to a file that has the full text. Debian packages complain if this file is the actual license text for common licenses, therefore it may be better option to only refer to a file inside the system (usually \texttt{/usr/share/common-license/LICENSE});
+	\item \texttt{Makefile.macos}, \texttt{Makefile.windows}, \texttt{Makefile.linux} \emph{Uneditable.} Each of these files sets variables with specific for each system, like \texttt{CC} and \texttt{DEBUG\_FLAGS}. If a variable isn't needed 's just left blank. The template is supposed to work with values as they are and users shouldn't change them unless they \emph{actually} want a different behavior.
+	\item \texttt{Makefile.common} \emph{Partially editable.} Sets some other variables, common to all OSs, like \texttt{LDFLAGS}, based on each platform Makefile. The template has set default SDL libs (SDL, SDL\_image, SDL\_mixer, SDL\_ttf), but other external libs may be wanted. When this happens, the user should add the libs wanted to the variable \texttt{EXTERNAL\_LIBS} without quotes and separated by simple space. Each of these libs must be a directory inside the \texttt{lib} folder. The rest of the file should not be changed  since it may lead to major errors when using the template, unless the user is totally sure of how it works, .
+	\item \texttt{Vagranfile} \emph{Optional.} This file creates two Virtual Machines running Debian and CentOS. If the user wishes to give support for them both (generating both \texttt{.deb} and \texttt{.rpm} packages), they could either use the VMs or run the template natively on each system. The virtualization provides an easier way to do that, but it is up to the user deciding this detail of the development cycle.
+	\item \texttt{changelog} \emph{Editable.} When creating the Debian package, it needs a changelog, that registers what was changed from the previous versions, much like a commit message. There are ways of generating this file automatically because its syntax is very particular, but the template doesn't contemplate it yet.
+	\item \texttt{metadata.ini} \emph{Editable.} As the extension suggests, \textit{ini} stands for \textit{initialization}. This is a configuration file that follows the \texttt{ini} syntax. It defines some project properties that will be used in several steps, like building and packaging, making it a very important file to correctly use the template. The user should change this file with the appropriate information as soon as cloning the repository and throughout the development.
+\end{itemize}
 
 
 \section{Platform}
@@ -29,11 +40,11 @@ The administrator has to manually add all the information related to a game, lik
 
 The general public can see a list of the available games, with their uploaded pictures. The home page also shows a slide with some pictures of highlighted games. By choosing one, it's possible to see its version, official repository, release date, description, among other information.
 
-Some other features of the platform are the possibility to download the game for the available operating systems or comment using a Facebook account, as shown in Figure \ref{fig:game_detail}. It's also possible to categorize the games and apply several filters on them. The user can search for a specific game by its name or description as well.
+Some other features of the platform are the possibility to download the game for the available operating systems or comment using a Facebook account, as shown in Figure \ref{fig:game_detail}. It's also possible to categorize the games and apply several filters to them. The user can search for a specific game by its name or description as well.
 
 The team reported they had some problems in their inner communication on this first part of the project. They are 13 people, while 5 were the managers and 8 were developers. For people without any experience in managing and with a very detailed and demanding process, like RUP, they said it was hard to balance everything.
 
-They also said that the transition from one process to the other was a little hard, especially the role change, holding the meetings and making sure Scrum/XP were being followed correctly. The communication problem they had on the first part was mitigated in this second part of the semester, but their main difficulty now was scoring the User Stories.
+They also said that the transition from one process to the other was a little hard, especially the role change, holding the meetings and making sure Scrum/XP were being followed correctly. The communication problem they had in the first part was mitigated in this second part of the semester, but their main difficulty now was scoring the User Stories.
 
 They declared that, beyond all the struggling that has been detailed above, they were too naive to choose React and Django for the development of the platform. This integration is not something very trivial for experienced programmers in both frameworks, it was even harder for developers that didn't have any experience with any of them. They said it was hard to manage everything that had to be done, learn the new technologies and still merge them together.
 
@@ -48,24 +59,3 @@ They declared that, beyond all the struggling that has been detailed above, they
 \section{Known Issues}
 \label {sec:issues}
 
-The building scripts have a few problems that will be fixed in the second part of the project:
-
-\begin{itemize}
-\item choosing a destination folder different than the user's home directory causes the Qt installer to fail. This is likely happening because somewhere on the Qt templates the symbol $\sim$ (abbreviation for home) is being used;
-
-\item when the installation works successfully, the game doesn't run properly (or at all) on some systems (tested on Arch Linux for now). Probably there are some missing libraries on the final package, but this is just a hunch and has to be proved;
-
-\item the games are running without sound, even on host systems that have full access to the sound card.
-\end{itemize}
-
-The platform also has a few issues that weren't resolved due to lack of time of the team. Some of them are described below:
-
-\begin{itemize}
-\item when an administrator tries to save a game without one or more needed fields an error occur, but all data is lost, requiring them to reenter all the information they had already typed. This may be happening because in the form validation, the team might be sending a new instance of the object instead of the one with the validation errors;
-
-\item images are being saved multiple times when filling different forms (of the same game). They think this may happen because they retrieve and save all forms instead of just one with the images;
-
-\item kernel choice is hard coded on the system;
-
-\item when reporting a bug, the request breaks on some web browsers, like Chrome. They think it must be something with the protocol being used (HTTPS, for Chrome, and HTTP for Firefox).
-\end{itemize}
