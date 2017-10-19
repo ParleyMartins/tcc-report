@@ -11,17 +11,39 @@ One of the goals of this work was to generate a template that allowed the game d
 
 The template consists of a series of Bash scripts, Makefile, libraries and a directory structure that is supposed to be followed by anyone who wants to use it. It is intended to be used as a template for new games developed in the courses taught at this University and it contains the most common libraries in game development, like SDL, SDL\_image, SDL\_mixer.
 
+\subsection{Root directory}
+\label{sec:root_directory}
+
 Currently, there are seven required files on the root directory, specifically, \texttt{LICENSE}, \texttt{Makefile.common}, \texttt{Makefile.macos}, \texttt{Makefile.windows}, \texttt{Makefile.linux}, \texttt{Vagranfile}, \texttt{changelog}, and \texttt{metadata.ini}. These files assure compilation is possible in any platform and also give some information about the project. An explanation of what each of them does and what information each may or may not have is given bellow. Some extra optional files are also explained.
 
 \begin{itemize}
 	\item \texttt{LICENSE} \emph{Editable.} This should be the text of the license or a reference to a file that has the full text. Debian packages complain if this file is the actual license text for common licenses, therefore it may be better option to only refer to a file inside the system (usually \texttt{/usr/share/common-license/LICENSE});
-	\item \texttt{Makefile.macos}, \texttt{Makefile.windows}, \texttt{Makefile.linux} \emph{Uneditable.} Each of these files sets variables with specific for each system, like \texttt{CC} and \texttt{DEBUG\_FLAGS}. If a variable isn't needed 's just left blank. The template is supposed to work with values as they are and users shouldn't change them unless they \emph{actually} want a different behavior.
-	\item \texttt{Makefile.common} \emph{Partially editable.} Sets some other variables, common to all OSs, like \texttt{LDFLAGS}, based on each platform Makefile. The template has set default SDL libs (SDL, SDL\_image, SDL\_mixer, SDL\_ttf), but other external libs may be wanted. When this happens, the user should add the libs wanted to the variable \texttt{EXTERNAL\_LIBS} without quotes and separated by simple space. Each of these libs must be a directory inside the \texttt{lib} folder. The rest of the file should not be changed  since it may lead to major errors when using the template, unless the user is totally sure of how it works, .
+	\item \texttt{Makefile.macos}, \texttt{Makefile.windows}, \texttt{Makefile.linux} \emph{Uneditable.} Each of these files sets variables with specific for each system, like \texttt{CC} and \texttt{DEBUG\_FLAGS}. If a variable isn't needed 's just left blank. The template is supposed to work with values as they are and users shouldn't change them unless they \emph{actually} want a different behaviour.
+	\item \texttt{Makefile.common} \emph{Partially editable.} Sets some other variables, common to all OSs, like \texttt{LDFLAGS}, based on each platform Makefile. The template has set default SDL libs (SDL, SDL\_image, SDL\_mixer, SDL\_ttf), but other external libs may be wanted. When this happens, the user should add the libs wanted to the variable \texttt{EXTERNAL\_LIBS} without quotes and separated by simple space. Each of these libs must be a directory inside the \texttt{lib} folder. The rest of the file should not be changed since it may lead to major errors when using the template unless the user is totally sure of how it works.
 	\item \texttt{Vagranfile} \emph{Optional.} This file creates two Virtual Machines running Debian and CentOS. If the user wishes to give support for them both (generating both \texttt{.deb} and \texttt{.rpm} packages), they could either use the VMs or run the template natively on each system. The virtualization provides an easier way to do that, but it is up to the user deciding this detail of the development cycle.
 	\item \texttt{changelog} \emph{Editable.} When creating the Debian package, it needs a changelog, that registers what was changed from the previous versions, much like a commit message. There are ways of generating this file automatically because its syntax is very particular, but the template doesn't contemplate it yet.
 	\item \texttt{metadata.ini} \emph{Editable.} As the extension suggests, \textit{ini} stands for \textit{initialization}. This is a configuration file that follows the \texttt{ini} syntax. It defines some project properties that will be used in several steps, like building and packaging, making it a very important file to correctly use the template. The user should change this file with the appropriate information as soon as cloning the repository and throughout the development.
 \end{itemize}
 
+\subsection{\texttt{src}}
+\label{sec:src_folder}
+
+The directory that holds all source code, including headers, is called \texttt{src} and is divided in two subfolders, \texttt{engine} and \texttt{game}, as shown in Figure \ref{fig:folder_structure_src}. Both of these directories have the same structure, that is explained below, along with the files outside them.
+
+\begin{itemize}
+	\item \texttt{main.cpp} \textit{Partially Editable.} It is where the function \texttt{main} should live. This file must not be renamed or moved to inside any of the subdirectories. Users should add their own logic to it, with all the relative includes. Because of compatibility issues with Windows, there is a function called \texttt{WinMain}, that only calls the main function and should not be touched.
+	\item \texttt{Makefile} \textit{Uneditable.} This makefile is called during the build process, from inside \texttt{Makefile.common}. It builds the final executable, linking main with the game library, engine library, and the libraries inside \texttt{lib}.
+	\item \texttt{\{game,engine\}/include/*} \textit{Editable.} These are the header files for the engine. The template already has one header, that should not be removed, but may be renamed if the correct references are made after that. This header defines the function \texttt{resources\_dir\_path}, that is very important to keep the template ability to run in multiple platforms.
+	\item \texttt{\{game,engine\}/src} \textit{Editable.} The implementation of all header functions should go inside this directory. Under this there are three other directories that are supposed to hold platform specific implementation, namely, \texttt{linux, windows,} and \texttt{macos}. Any code outside them is considered to be generic and can be used in any of these plaforms. Every piece of code specific to one of these systems should be placed under the corresponding folder. The template already has specific implementation to find the \texttt{resources} folder that may be renamed or reimplemented. It is not advised to change the \texttt{macos} implementation though, except for the directory name.
+	\item \texttt{\{game, engine\}/Makefile} \textit{Uneditable.} Called from the \texttt{Makefile} in the \texttt{src} directory. Responsible for building each of these two libraries. If the folder structure was followed correctly, there is no need to change the contents of this file.
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[height=300px,keepaspectratio]{folder_structure_src}
+\caption{\texttt{src} directory}
+\label {fig:folder_structure_src}
+\end{figure}
 
 \section{Platform}
 \label {sec:platform}
