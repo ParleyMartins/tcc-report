@@ -18,7 +18,7 @@ Currently, there are seven required files on the root directory, specifically, \
 
 \begin{itemize}
 	\item \texttt{LICENSE} \emph{Editable.} This should be the text of the license or a reference to a file that has the full text. Debian packages complain if this file is the actual license text for common licenses, therefore it may be better option to only refer to a file inside the system (usually \texttt{/usr/share/common-license/LICENSE});
-	\item \texttt{Makefile.macos}, \texttt{Makefile.windows}, \texttt{Makefile.linux} \emph{Uneditable.} Each of these files sets variables with specific for each system, like \texttt{CC} and \texttt{DEBUG\_FLAGS}. If a variable isn't needed 's just left blank. The template is supposed to work with values as they are and users shouldn't change them unless they \emph{actually} want a different behaviour.
+	\item \texttt{Makefile.macos}, \texttt{Makefile.windows}, \texttt{Makefile.linux} \emph{Uneditable.} Each of these files sets variables with specific for each system, like \texttt{CC} and \texttt{DEBUG\_FLAGS}. If a variable isn't needed it's just left blank. The template is supposed to work with values as they are and users shouldn't change them unless they \emph{actually} want a different behaviour.
 	\item \texttt{Makefile.common} \emph{Partially editable.} Sets some other variables, common to all OSs, like \texttt{LDFLAGS}, based on each platform Makefile. The template has set default SDL libs (SDL, SDL\_image, SDL\_mixer, SDL\_ttf), but other external libs may be wanted. When this happens, the user should add the libs wanted to the variable \texttt{EXTERNAL\_LIBS} without quotes and separated by simple space. Each of these libs must be a directory inside the \texttt{lib} folder. The rest of the file should not be changed since it may lead to major errors when using the template unless the user is totally sure of how it works.
 	\item \texttt{Vagranfile} \emph{Optional.} This file creates two Virtual Machines running Debian and CentOS. If the user wishes to give support for them both (generating both \texttt{.deb} and \texttt{.rpm} packages), they could either use the VMs or run the template natively on each system. The virtualization provides an easier way to do that, but it is up to the user deciding this detail of the development cycle.
 	\item \texttt{changelog} \emph{Editable.} When creating the Debian package, it needs a changelog, that registers what was changed from the previous versions, much like a commit message. There are ways of generating this file automatically because its syntax is very particular, but the template doesn't contemplate it yet.
@@ -34,7 +34,7 @@ The directory that holds all source code, including headers, is called \texttt{s
 	\item \texttt{main.cpp} \textit{Partially Editable.} It is where the function \texttt{main} should live. This file must not be renamed or moved to inside any of the subdirectories. Users should add their own logic to it, with all the relative includes. Because of compatibility issues with Windows, there is a function called \texttt{WinMain}, that only calls the main function and should not be touched.
 	\item \texttt{Makefile} \textit{Uneditable.} This makefile is called during the build process, from inside \texttt{Makefile.common}. It builds the final executable, linking main with the game library, engine library, and the libraries inside \texttt{lib}.
 	\item \texttt{\{game,engine\}/include/*} \textit{Editable.} These are the header files for the engine. The template already has one header, that should not be removed, but may be renamed if the correct references are made after that. This header defines the function \texttt{resources\_dir\_path}, that is very important to keep the template ability to run in multiple platforms.
-	\item \texttt{\{game,engine\}/src} \textit{Editable.} The implementation of all header functions should go inside this directory. Under this there are three other directories that are supposed to hold platform specific implementation, namely, \texttt{linux, windows,} and \texttt{macos}. Any code outside them is considered to be generic and can be used in any of these plaforms. Every piece of code specific to one of these systems should be placed under the corresponding folder. The template already has specific implementation to find the \texttt{resources} folder that may be renamed or reimplemented. It is not advised to change the \texttt{macos} implementation though, except for the directory name.
+	\item \texttt{\{game,engine\}/src} \textit{Editable.} The implementation of all header functions should go inside this directory. Under this there are three other directories that are supposed to hold platform-specific implementation, namely, \texttt{linux, windows,} and \texttt{macos}. Any code outside them is considered to be generic and can be used in any of these platforms. Every piece of code specific to one of these systems should be placed in the corresponding folder. The template already has specific implementation to find the \texttt{resources} folder that may be renamed or reimplemented. It is not advised to change the \texttt{macos} implementation though, except for the directory name.
 	\item \texttt{\{game, engine\}/Makefile} \textit{Uneditable.} Called from the \texttt{Makefile} in the \texttt{src} directory. Responsible for building each of these two libraries. If the folder structure was followed correctly, there is no need to change the contents of this file.
 \end{itemize}
 
@@ -45,39 +45,48 @@ The directory that holds all source code, including headers, is called \texttt{s
 \label {fig:folder_structure_src}
 \end{figure}
 
-\section{Platform}
-\label {sec:platform}
+\subsection{\texttt{dist}}
+\label{sec:dist_folder}
 
-The team developing this first version of the platform was able to integrate Django and React with some difficulty. Both of the technologies chosen are very well established on their own. Putting them together, however, is another matter, where they had a real hard time to make everything work right. They used React as the main user interface and Django Admin package to create the administrator part of the game.
-
-The website as of now allows an administrator to upload a game, with its respective information, like supported platform, related media, and installers.
-The administrator has to manually add all the information related to a game, like developers who worked on it, awards won (if any), release date, version number, etc. Figure \ref{fig:include_game1} shows part of the screen to add a game.
+Each platform has particularities concerning generating packages. Debian, for example, requires a changelog inside the package, while Windows needs to have the package registered (with all of its contents). The dist folder contains some specific files that are needed for each package. Figure \ref{fig:folder_structure_dist} shows the files needed for each system.
 
 \begin{figure}[h!]
 \centering
-\fbox{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{include_game1}}
-\caption{Include new game}
-\label {fig:include_game1}
+\includegraphics[height=200px, keepaspectratio]{folder_structure_dist}
+\caption{\texttt{dist} directory}
+\label {fig:folder_structure_dist}
 \end{figure}
 
-The general public can see a list of the available games, with their uploaded pictures. The home page also shows a slide with some pictures of highlighted games. By choosing one, it's possible to see its version, official repository, release date, description, among other information.
-
-Some other features of the platform are the possibility to download the game for the available operating systems or comment using a Facebook account, as shown in Figure \ref{fig:game_detail}. It's also possible to categorize the games and apply several filters to them. The user can search for a specific game by its name or description as well.
-
-The team reported they had some problems in their inner communication on this first part of the project. They are 13 people, while 5 were the managers and 8 were developers. For people without any experience in managing and with a very detailed and demanding process, like RUP, they said it was hard to balance everything.
-
-They also said that the transition from one process to the other was a little hard, especially the role change, holding the meetings and making sure Scrum/XP were being followed correctly. The communication problem they had in the first part was mitigated in this second part of the semester, but their main difficulty now was scoring the User Stories.
-
-They declared that, beyond all the struggling that has been detailed above, they were too naive to choose React and Django for the development of the platform. This integration is not something very trivial for experienced programmers in both frameworks, it was even harder for developers that didn't have any experience with any of them. They said it was hard to manage everything that had to be done, learn the new technologies and still merge them together.
+\begin{itemize}
+	\item \texttt{windows/templateTest.wxs} \textit{Uneditable.} This file is required to generate the installer for windows. It is an XML that lists all directories, files and libraries inside the installer. Each one of them has a unique UUID, because this is how Windows controls what is installed or removed. This file is generated once when \texttt{pack.sh} called in Windows. If the user has updated the resources and other files, they should delete this and rerun \texttt{pack.sh}, but never edit it themselves, because it is a very particular \textbf{large} file.
+	\item \texttt{macos/Info.plist} \textit{Uneditable.} Because macOS packages are self-contained, this file is pretty simple. It is an XML that contains keys and values related to the package installed, like its name, version, and developer. This file has its information updated when \texttt{pack.sh} is called on a macOS system.
+	\item \texttt{linux/redhat/template-test.spec} \textit{Uneditable.} Every \texttt{rpm} package has to have a file containing the isntructions of what to and how to install that package. This file is replaced with the specifics of each game, mostly the information in \texttt{metadata.ini}, when \texttt{pack.sh} is called on a Red Hat machine.
+	\item \texttt{linux/debian/control} \textit{Uneditable.} Inside a debian package, there is a control section, that contains some metadata for the package being installed. It is a required file on every \texttt{.deb} package. This file has this data, aquired from \texttt{metadata.ini}.
+	\item \texttt{linux/debian/template-test.6} \textit{Uneditable.} Even though this file is inside \texttt{debian}, it is used for both linux distributions. It is a \texttt{man} file, that contains the package info
+\end{itemize}
 
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{terracota_detail}
-\caption{Game detail}
-\label {fig:game_detail}
-\end{figure}
+\subsection{\texttt{scripts}}
+\label{sec:scripts_folder}
 
-\section{Known Issues}
-\label {sec:issues}
+A central part of the template is the ability to build, run and package the game. This happens because there are several scripts that allow users to easily do this process, by running them from the root directory of the repository. None of these scripts should be modified by the user.
+
+The scripts inside this folder are not complex or complicated, since the hard work is mostly done inside the \texttt{util} directory. The build script is fairly simple, requiring one argument that is the mode the script will run, \texttt{debug} or \texttt{release}. If none is provided, it will use \texttt{debug} as default. It simply checks the platform and run the command \texttt{make} with the appropriate Makefile and mode; \texttt{run.sh} sets some variables and change the directory to where all the libs are to then call the executable; \texttt{cleanup.sh} remove objects, libraries and other files generated during compilation; and \texttt{pack.sh} calls one of the scripts inside \texttt{util} to generate the corresponding package.
+
+\lstinputlisting[language=bash, frame=single, caption={\texttt{gen\_deb.sh}}, label=lst:gen_deb.sh]{../proj-template/scripts/util/gen_deb.sh}
+
+Generating a \texttt{.deb} package consists in a few steps as shown in Listing \ref{lst:gen_deb.sh}. It first creates a temporary directory and its structure. The executable, the required libs and the resources are all copied to their respective location inside this structure. The \texttt{control} file is copied from \texttt{dist} folder and the information is replaced with what is in \texttt{metadata.ini}.
+
+% The pack script is also simple, it just identifies the platform and calls the script that builds the package for that platform. Each platform has its singularities when it comes to packaging, that is why
+
+% To create the \texttt{.deb} file, it is called the \texttt{util/gen\_deb.sh}, shown in Listing \ref{lst:gen_deb.sh}. Lines 7 through 11 initialize some variables that will be used inside the script. Lines 15-18
+
+% \lstinputlisting[language=bash, frame=single, caption=\texttt{gen\_deb.sh}, label=lst:gen_deb.sh, numbers=left]{../proj-template/scripts/util/gen_deb.sh}
+
+
+
+
+
+
+
 
