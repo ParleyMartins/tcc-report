@@ -92,17 +92,6 @@ Most Linux distributions have their own package managers. Each expects and handl
 
 Another installing method is compiling from scratch. This may be very handy if the user is more advanced or the package is not in the package manager's repository. However, in this case, the user will have to manually handle dependencies, download, compile and do everything else the manager does.
 
-\subsection{CMake}
-\label {sec:cmake}
-
-Creating packages for multiple platforms requires a lot of time and effort, because it has to be compiled on each of the systems, with those system's libraries, binaries and architecture. In order to make this task easier, several cross-platform building tools were created.
-
-CMake was created to fulfill the need for \lq\lq a powerful, cross-platform build environment \rq\rq{} \cite{cmake2017overview} for a big American company. This project, developed by Kitware, was open source and grew from that to be a build environment for any purpose, powered by Kitware. It is \lq\lq a system that manages the build process in an operating system and in a compiler-independent manner\rq\rq{} \cite{cmake2017overview}.
-
-In a very clever way, CMake generates native compiling and configuration scripts (like makefiles for Unix and namespaces for Windows) and use them to build the package. It is also designed to be used with the native environment, unlike other building tools \cite{cmake2017overview}.
-
-The building process is controlled by files named \texttt{CMakeLists.txt}. They can have commands to generate a building environment, set needed variables, compile dependencies, link required libraries and install the project. A project that has many subdirectories, each with their own rules, can have multiple \texttt{CMakeLists.txt} to create the final product.
-
 
 \section{Related Work}
 \label {sec:relate_work}

@@ -1,7 +1,7 @@
 \chapter[Results]{Results}
 \label{sec:results}
 
-This chapter explains the results obtained so far with the project development.
+This chapter explains the results obtained so far with the project development. Section \ref{sec:template} gives an explanation of how the template works, how it is divided and what files come when downloading it. It also explains what each file is responsible for and if the user should edit it or not. Section \ref{sec:difficulties} shows some of the problems that came throught the development/maintainence of the template and how they were overcame.
 
 
 \section{Template}
@@ -73,20 +73,24 @@ A central part of the template is the ability to build, run and package the game
 
 The scripts inside this folder are not complex or complicated, since the hard work is mostly done inside the \texttt{util} directory. The build script is fairly simple, requiring one argument that is the mode the script will run, \texttt{debug} or \texttt{release}. If none is provided, it will use \texttt{debug} as default. It simply checks the platform and run the command \texttt{make} with the appropriate Makefile and mode; \texttt{run.sh} sets some variables and change the directory to where all the libs are to then call the executable; \texttt{cleanup.sh} remove objects, libraries and other files generated during compilation; and \texttt{pack.sh} calls one of the scripts inside \texttt{util} to generate the corresponding package.
 
+
+Generating a \texttt{.deb} package consists in a few steps as shown in Listing \ref{lst:gen_deb.sh}. It first creates a temporary directory and its structure. The executable, the required libs and the resources are all copied to their respective location inside this structure. The \texttt{control} file is copied from \texttt{dist} folder and the information is replaced with what is in \texttt{metadata.ini}. License, changelog and man pages are copied to a documentation folder inside that structure.
+
 \lstinputlisting[language=bash, frame=single, caption={\texttt{gen\_deb.sh}}, label=lst:gen_deb.sh]{../proj-template/scripts/util/gen_deb.sh}
 
-Generating a \texttt{.deb} package consists in a few steps as shown in Listing \ref{lst:gen_deb.sh}. It first creates a temporary directory and its structure. The executable, the required libs and the resources are all copied to their respective location inside this structure. The \texttt{control} file is copied from \texttt{dist} folder and the information is replaced with what is in \texttt{metadata.ini}.
 
-% The pack script is also simple, it just identifies the platform and calls the script that builds the package for that platform. Each platform has its singularities when it comes to packaging, that is why
-
-% To create the \texttt{.deb} file, it is called the \texttt{util/gen\_deb.sh}, shown in Listing \ref{lst:gen_deb.sh}. Lines 7 through 11 initialize some variables that will be used inside the script. Lines 15-18
-
-% \lstinputlisting[language=bash, frame=single, caption=\texttt{gen\_deb.sh}, label=lst:gen_deb.sh, numbers=left]{../proj-template/scripts/util/gen_deb.sh}
+Making a \texttt{.rpm} package is somewhat simpler than generating a Debian package. \texttt{gen\_rpm.sh} basically adds the info contained in \texttt{metadata.ini} to \texttt{templateTest.spec}, copies libs and resources to the right places, and calls the rpmbuilder. Unlike Debian, everything the builder needs to know is inside the \texttt{spec} file, the script only copies things to where they are supposed to be.
 
 
+\section{Difficulties}
+\label{sec:difficulties}
 
+Creating the installer for Windows has proved to be the hardest part of the template, because Windows has a completely different folder structure from GNU/Linux systems, they also don't have the same tools available (like Bash). Compiling for Windows has also tunred out to be more challenging than Professor Edson first antecipated, because the template wouldn't run correctly, even after installing all required dependencies.
 
+The template for Windows was supposed to use Visual Studio compiler, which is a tool made specifically for that platform, however when calling the compiler, it would not find any of the \texttt{.cpp} files. To try to revert that situation, the parameters passed to the compiler inside \texttt{Makefiles} were checked and the compiling commands were ran individually inside each folder that had source code. Even after that thourough examination, the compiler would refused to find the files. All tools were uninstalled and reinstalled and the problem remained. To solve this issue, it was decided to change the compiler to \texttt{gcc}, just like the GNU/Linux systems.
 
+Changing the compiler was partially easy, because it was needed only to replicate the linux \texttt{Makefile} on Windows (with a few commands replaced). It was required to install one more dependency, the compiler and its stack, but Visual Studio could be dropped too. This has caused another complication, because, for some reason, during the final part of the compilation, it didn't recognize the \texttt{main} function. It turns out that the compiler needed a different entry point instead of the default \texttt{main}. According to Visual Studio documentation, when creating a GUI application, it needs a function called \texttt{WinMain} \cite{visualstudio2017entrypoint} and even with \texttt{mingw} it complained about not having it. This function was added and it simply called \texttt{main}.
 
+After compiling, the issue was to generate the installer. Initially, the script didn't provide any means to create the required \texttt{wxs} with the data from the repository, demanding the user to manually create that file. It wasn't an easy task, since this is a very particular file, with specific tags and keywords (like, every independent set of files must be wrapped around a component, that is how Windows checks what is what inside a package) and it's also a large file (each one of the files and resources inside the package must be listed). To aid in that process, the script \texttt{gen\_wxs} was created and the \texttt{wxs} generation was divided in three parts, header, directory, and feature, as seen in Listing \ref{lst:gen_wxs.sh}. The main problem in this part of the template development was finding and listing the resources, because there could be any number of subdirectories. Recursion was the first thought to solve this issue but it proved to be hard to use in Bash, because it defines variables only once. To solve that, the recursive variable should be updated before returning to the previous call. By doing that, it was possible to list all resources and their folders in the \texttt{wxs} file.
 
-
+\lstinputlisting[language=bash, frame=single, caption={Part of \texttt{gen\_wxs.sh}}, label=lst:gen_wxs.sh, firstnumber=186, firstline=186]{../proj-template/scripts/util/gen_wxs.sh}
