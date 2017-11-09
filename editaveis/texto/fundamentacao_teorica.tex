@@ -29,7 +29,7 @@ The static library is compiled against the main source code and it's merged to i
 \footnotetext{The text of this license can be found at \url{https://www.zlib.net/zlib_license.html}}
 
 
-\section{Filesystem Hierarchy Standard}
+\section{Linux Filesystem Hierarchy Standard}
 \label {sec:fhs}
 
 When installing a game, it must go somewhere in the filesystem of the user. For games developed to run in the GNU/Linux environments, they should follow the patterns found in FHS. The Filesystem Hierarchy Standard (FHS) was proposed on February 14, 1994 as an effort to rebuild the file and directory structure of Linux and, later, all Unix-like systems. It helps developers and users to predict the location of existing and new files on the system, by proposing how minimum files, directories and guiding principles \cite{bandel2001special}.
@@ -83,7 +83,7 @@ Repositories are also related to the version control of the source code being pr
 
 Modern version control systems allow developers to work on a distributed basis and to parallel their tasks, with the ability of \textit{branching} the repository. Those \textit{branches} are separated lines of development, that won't mess with the main one until they are merged \cite{westby2015git}. This feature lets developers create and test new changes before submitting them to the project stable line of work, without affecting the final product.
 
-\section{Packages}
+\section{Linux Packages}
 \label {sec:packages}
 
 In computer science package can have multiple meanings, depending on the context being used. A GNU/Linux package means a bundle of files containing the required data to run an application, such as binaries and information about the package. Game packages behave exactly the same as any other software. To facilitate installing software, GNU/Linux has package managers.
@@ -91,6 +91,18 @@ In computer science package can have multiple meanings, depending on the context
 Most Linux distributions have their own package managers. Each expects and handle different types of files, but all of them have the common goal of making the installation easier. They download the package, resolve dependencies, copy the needed binaries and execute any post- or pre-configuration required by the system to install a package \cite{linode2017linux}. For example, Debian has \textit{dpkg}, Red Hat has \textit{rpm} and Arch Linux has \textit{pacman} as default package managers.
 
 Another installing method is compiling from scratch. This may be very handy if the user is more advanced or the package is not in the package manager's repository. However, in this case, the user will have to manually handle dependencies, download, compile and do everything else the manager does.
+
+
+\section{Windows Filesystem}
+\label{sec:win_filesystem}
+
+
+\section{macOS Filesystem}
+\label{sec:win_filesystem}
+
+
+\section{Generating packages}
+\label{sec:win_filesystem}
 
 
 \section{Related Work}

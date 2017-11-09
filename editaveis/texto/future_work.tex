@@ -1,42 +1,14 @@
+\chapter{Conclusion}
+\label{sec:conclusion}
 
-\chapter{Future Work}
-\label{sec:future_work}
+Creating games is something supposed to be challenging and fun. But just like other types of software it requires a lot of effort to distribute them to the player, specially if a developer targets multiple platforms and Operating Sytems. Each machine has diffent configuration, different libraries and archtecture and most of the development inside the University doesn't take that into account, which may cause the final software to have unexpected errors.
 
-This chapter explains what will be done in the remaining time of the project. It talks about some of the long term goals and the activities that will be carried to achieve them.
+This work has shown just how difficult it is to support multiple OSs, seeking to create a unique solution to easier this task. Even with the care of separting the specifics for each Operating System and package the binaries within each, this project hasn't worked the way it was expected to. It wasn't possible to test the macOS distribution, due to lack of time, and Windows just gave a lot of other problems, like issues with the local environment, executables that worked partially, run time errors (that didn't happen on Linux, for example).
 
-\section{Schedule}
-\label{sec:schedule}
+With all these problems, the project served best as a learning experience, from which everyone involved should take a few lessons. The first lesson is that creating the template the way it was made wasn't the correct approach, because all of the parties tried to replicate the macOS "way of packaging" on \textit{all} the platforms, instead of focusing on how to follow each platform "rules". This might have seemed a good idea, with the self contained package, but that's not how Windows or Linux work.
 
-% For the next months it is expected to have the script for SDL2 projects finished with support for Windows and MacOS. The known issues described on Section \ref{sec:issues} have to be fixed for both SDL 1 and 2. The building scripts have to be tested against all the available games.
+Another lesson is that we should take advantage of the natural environment in each plaform, by creating files to work with Visual Studio and XCode instead of 'forcing' the way around with Bash and Make. On Windows, even with the initial idea of using Visual Studio compiler, we still had Bash scripts, and when VS didn't work, we used another Linux solution, which may be the cause of all the errors and issues that happened on that OS.
 
-% Another goal is to allow the user to link their GitHub repository to the website, letting them build the packages for the game automatically with GitHub hooks. The game will then, be available in the website without the need for a manual upload from an administrator.
+The third lesson is concerning the libraries used in the project. In order to make all the libs available for the player, it was decided to use binaries and not the source files in the template (even though the source is in it too, but just to use in extreme cases). Every binary carries some information of how it was built and that may cause problems if the computer running them doesn't have all the dependencies that were there at compiling time.
 
-% It's also purpose of this next part of the semester to maintain and evolve the platform while the tasks related to the script are being held. Some selected issues will be resolved to add new features and fix bugs found on the system.
-
-% The following activities will be developed in the remaining time of the project. They are summarized in Figure \ref{fig:schedule}.
-
-% \begin{enumerate}
-% \item \textbf{Literature Review}: review what the literature has on packaging, CMake, game development.
-% \item \textbf{Add Lua support}: some of the games, especially the ones built with SDL2, have lua as a dependency library. This lib is not being being compiled in the current version of the building scripts.
-% \item \textbf{Add other Linux distros support}: allow other users to install the games using their package manager. Generate at least \textit{.rpm} packages in addition to the \textit{.deb} already generated.
-% \item \textbf{Add Darcy's games}: look for games developed at Darcy Ribeiro campus and run the building scripts on them.
-% \item \textbf{Add MacOS support}: create install packages for Mac (Apple Systems).
-% \item \textbf{Add Windows support}: make an installer (\textit{.exe}) to run on Windows 10 (maybe with some backwards compatibility if possible).
-% \item \textbf{Integrate to platform}: run the scripts though a request on the website
-% \item \textbf{Avoid duplication on save}: according to the GitHub repository of the team, models are being saved with duplicated data.
-% \item \textbf{Create games statistics}: create endpoints to send game statistics, like views and download amounts.
-% \item \textbf{Submit issues to the GitHub repository}: allow users to submit issues through the platform to the GitHub repository of the game.
-% \item \textbf{Integrate to GitHub}: make the system receive GitHub signals.
-% \item \textbf{Allow user to build a game from a branch}: et the user upload a game based on a chosen branch. This will in fact run the script to build the game, but without the need of a an administrator.
-% \item \textbf{Read game info from game branch}: developers, description and even some images are usually available in the game repository. This task is to read that information to avoid the need of manual input of the administrator.
-% \item \textbf{Code refactoring}: integrate scripts (SDL 1 and 2), make them more generic and efficient.
-% \item \textbf{Final adjustments}: make minor improvements and fixes.
-% \item \textbf{Write Report}: report progress and results.
-% \end{enumerate}
-
-% \begin{figure}[h!]
-% \centering
-% \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{gantt_chart}
-% \caption{Project Schedule}
-% \label{fig:schedule}
-% \end{figure}
+On top of that, there is also the development and maintaining of the \textit{UnB Games} website. Maintaining a free software project demands time and volunteers that actually want to work with that software. It's hard to find that
