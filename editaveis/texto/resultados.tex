@@ -17,7 +17,7 @@ The template consists of a series of Bash scripts, Makefiles, libraries and a di
 Currently, there are seven required files on the root directory, specifically, \texttt{LICENSE}, \texttt{Makefile.common}, \texttt{Makefile.macos}, \texttt{Makefile.windows}, \texttt{Makefile.linux}, \texttt{Vagranfile}, \texttt{changelog}, and \texttt{metadata.ini}. These files assure compilation is possible in any platform and also give some information about the project. An explanation of what each of them does and what information each may or may not have is given on Table \ref{tab:files_root_dir}. Some extra optional files are also explained.
 
 
-\begin{longtabu} to \linewidth {XlX[2]}
+\begin{longtable}{p{3cm}p{2cm}p{10cm}}
 
 \caption{Files on the root directory}\label{tab:files_root_dir}\\
 \toprule
@@ -40,7 +40,7 @@ Currently, there are seven required files on the root directory, specifically, \
 \texttt{metadata.ini} & \emph{Editable} & As the extension suggests, \textit{ini} stands for \textit{initialization}. It is a configuration file that follows the \texttt{ini} syntax. It defines some project properties that will be used in several steps, like building and packaging, making it a critical file to use the template correctly. The user should change this file with the appropriate information as soon as cloning the repository and throughout the development. \\
 
 \bottomrule
-\end{longtabu}
+\end{longtable}
 
 
 \subsection{Sources Directory (\texttt{src})}
@@ -48,7 +48,7 @@ Currently, there are seven required files on the root directory, specifically, \
 
 The directory that holds all source code, including headers, is called \texttt{src} and is divided in two subfolders, \texttt{engine} and \texttt{game}, as shown in Figure \ref{fig:folder_structure_src}. The reason for this division is to keep separate what is engine specific (like movements, rendering windows, capturing input from the player) from the actual game. Engines can be reused in several projects, providing a basic API to create new games. Both of these directories have the same structure, that is explained in Table \ref{tab:files_src_dir}, along with the files outside them.
 
-\begin{longtabu} to \linewidth {XlX[2]}
+\begin{longtable}{p{3cm}p{2cm}p{10cm}}
 
 \caption{Files in the sources directory}\label{tab:files_src_dir}\\
 \toprule
@@ -63,7 +63,7 @@ The directory that holds all source code, including headers, is called \texttt{s
 \texttt{\{game,engine\}/ Makefile} & \textit{Uneditable} & Called from the \texttt{Makefile} in the \texttt{src} directory. Responsible for building each of these two libraries. If the folder structure was followed correctly, there is no need to change the contents of this file. \\
 
 \bottomrule
-\end{longtabu}
+\end{longtable}
 
 
 
@@ -86,7 +86,7 @@ Each platform has particularities concerning generating packages. Debian, for ex
 \label {fig:folder_structure_dist}
 \end{figure}
 
-\begin{longtabu} to \linewidth {XlX}
+\begin{longtable}{p{7cm}p{2cm}p{6cm}}
 
 \caption{Files on the \texttt{dist} directory}\label{tab:files_dist_dir}\\
 \toprule
@@ -94,13 +94,14 @@ Each platform has particularities concerning generating packages. Debian, for ex
 \midrule
 \endhead
 
-\texttt{windows/templateTest.wxs} & \textit{Uneditable} & This file is required to generate the installer for windows. It is an XML that lists all directories, files and libraries inside the installer. Each one of them has a unique UUID, because this is how Windows controls what is installed or removed. This file is generated once when \texttt{pack.sh} called in Windows. If the user has updated the resources and other files, they should delete this and rerun \texttt{pack.sh}, but never edit it themselves, because it is a very particular \textbf{large} file. \\ \hline
+\texttt{windows/templateTest.wxs} & \textit{Uneditable} & This file is required to generate the installer for windows. It is an XML that lists all directories, files and libraries inside the installer. Each one of them has a unique UUID, because this \parfillskip=0pt \tabularnewline
+ & & is how Windows controls what is installed or removed. This file is generated once when \texttt{pack.sh} called in Windows. If the user has updated the resources and other files, they should delete this and rerun \texttt{pack.sh}, but never edit it themselves, because it is a very particular \textbf{large} file. \\ \hline
 \texttt{macos/Info.plist} & \textit{Uneditable} & Because macOS packages are self-contained, this file is pretty simple. It is an XML that contains keys and values related to the package installed, like its name, version, and developer. This file has its information updated when \texttt{pack.sh} is called on a macOS system. \\ \hline
 \texttt{linux/redhat/template-test.spec} & \textit{Uneditable} & Every \texttt{rpm} package has to have a file containing the isntructions of what to and how to install that package. This file is replaced with the specifics of each game, mostly the information in \texttt{metadata.ini}, when \texttt{pack.sh} is called on a Red Hat machine. \\ \hline
 \texttt{linux/debian/control} & \textit{Uneditable} & Inside a debian package there is a control section that contains some metadata for the package being installed. It is a required file on every \texttt{.deb} package. This file has this data, aquired from \texttt{metadata.ini}. \\ \hline
 \texttt{linux/debian/template-test.6} & \textit{Uneditable} & Even though this file is inside \texttt{debian}, it is used for both linux distributions. It is a \texttt{man} file, that contains the package usage description. \\
 \bottomrule
-\end{longtabu}
+\end{longtable}
 
 
 
