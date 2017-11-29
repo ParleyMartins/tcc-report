@@ -1,7 +1,7 @@
 \chapter{Basic Concepts}
 \label {sec:basic_concepts}
 
-This chapter gives an overview of some basic concepts needed by the reader to understand this work. It starts talking about games and the SDL library, then talks a little about the GNU/Linux Filesystem, that helps developers to know where their binaries and other files should go on the user's system. In the end, there are brief words on repositories and packages.
+This chapter gives an overview of some basic concepts needed by the reader to understand this work. It speaks briefly of games and their development using the \texttt{SDL} library and repositories to store the code on sections \ref{sec:games}, \ref{sec:sdl} and \ref{sec:repository}. Sections \ref{sec:fhs} and \ref{sec:win_filesystem} give some explanation on the folder structure of both GNU/Linux and Windows systems, while sections \ref{sec:packages} and \ref{sec:wix_toolset} describe how packaging works on both of these systems. At last, section \ref{sec:related_work} shows what has been done and how these works inspired this project.
 
 \section{Games}
 \label {sec:games}
@@ -10,9 +10,9 @@ Games have been a part of human development since their early childhood and have
 
 They can take several formats, like board and card games, for example. Each form has unique strategies to win. To illustrate that, take the two cited cases: board games usually divide the user space into sectors, and everything is related to which sectors you are in and how you control them; card games, however, rely on the symbols and possible combinations of them \cite{crawford1984art}. To win the former type, a player has to understand the cost to acquire/leave sectors and plan accordingly, while on the latter, one needs to watch their symbols and try to get the best combination out of them.
 
-Since computers were invented, they completely changed the gaming world. New kinds of games, like \textit{first person shooter}, and \textit{tower defense}, were created and made accessible, while it became possible to play virtually the ones that required a physical board or a lot of people. With the Internet, it grew even more comfortable to own and play different games. It's also possible to play any type of game with anyone in the world.
+Since computers were invented, they completely changed the gaming world. New kinds of games, like \textit{first person shooter}, and \textit{tower defense}, were created and made accessible, while it became possible to play virtually the ones that required a physical board or a lot of people. With the Internet, it grew even more comfortable to own and play different games. It's also possible to play any game with anyone in the world.
 
-Because computer games are software with audio, art, and gameplay, they should follow a software development method, anyone chosen by the team. This is something that most game developers avoid because they see their work as pure art \cite{bethke2003game}. Although that is probably true, a game has everything a \lq\lq normal software\rq\rq{} has and more, therefore requiring a known development process or method. Using software engineering techniques (adapted to their needs, naturally) will result in a better game and better interaction with the final user \cite{pressman2009software}.
+Because computer games are software with audio, art, and gameplay, they should follow a software development method, anyone chosen by the team. It is something that most game developers avoid because they see their work as pure art \cite{bethke2003game}. Although that is probably true, a game has everything a \lq\lq normal software\rq\rq{} has and more, therefore requiring a known development process or method. Using software engineering techniques (adapted to their needs, naturally) will result in a better game and better interaction with the final user \cite{pressman2009software}.
 
 
 \section{SDL}
@@ -20,7 +20,7 @@ Because computer games are software with audio, art, and gameplay, they should f
 
 Digital games have many things happening at once. There is sound playing; they must be able to receive and respond to inputs from the player, coming from different sources sometimes, and, while all this is happening, they must also keep rendering the scenario and show the statistics of the user. To simplify that, developers use several libraries in their source codes, one of the most popular being SDL.
 
-Simple DirectMedia Layer (SDL) is a library that helps developers by creating cross-platform APIs to make easier handling video, input, audio, threads. It's used in several games available in big platforms like \textit{Steam} and \textit{Humble Bundle} \cite{sdl2017}. To be fully integrated with the developer's code, a few files are needed during the compilation: the headers, that contains definitions of functions and structures; and the library itself, that contains the binaries that will run with the main code, and may be static or shared \cite{mitchell2013sdl}.
+Simple DirectMedia Layer (SDL) is a library that helps developers by creating cross-platform APIs to make easier handling video, input, audio, threads. It's used in several games available in big platforms like \textit{Steam} and \textit{Humble Bundle} \cite{sdl2017}. To be fully integrated with the developer's code, a few files are needed during the compilation: the headers, that contains definitions of functions and structures; and the library itself, that contains the binaries that will run with the main code and may be static or shared \cite{mitchell2013sdl}.
 
 A shared library is one that can be used in multiple programs. It provides common code that is reusable and can be linked to the developer's code at the running time. On GNU/Linux systems they have the \textit{.so} file extension, while on Windows they have \textit{.dll} \cite{campbell2009algorithms}. In this case, the library code is not merged to the main code, resulting in a smaller binary for the developer. It's required to have the library installed on the user's system, though.
 
@@ -45,7 +45,7 @@ Modern version control systems allow developers to work on a distributed basis a
 
 When installing a game, it must go somewhere in the filesystem of the user. For games developed to run in the GNU/Linux environments, they should follow the patterns found in FHS. The Filesystem Hierarchy Standard (FHS) was proposed on February 14, 1994, as an effort to rebuild the file and directory structure of Linux and, later, all Unix-like systems. It helps developers and users to predict the location of existing and new files on the system, by proposing minimum files, directories and guiding principles \cite{bandel2001special}.
 
-The Hierarchy starts defining types of files that can exist in a system. Whenever files differ in this classification, they should be located in different parts of the system: \textit{shareable} files are the ones that can be accessed from a remote host, while \textit{unshareable} are files that have to be on the same machine to be obtained. \textit{Static} files are the ones that aren't supposed to be changed without administrator privileges, whereas \textit{variable} ones can be altered by regular users \cite{bandel2001special}
+The Hierarchy starts defining types of files that can exist in a system. Whenever records differ in this classification, they should be located in different parts of the system: \textit{shareable} files are the ones that can be accessed from a remote host, while \textit{unshareable} are files that have to be on the same machine to be obtained. \textit{Static} files are the ones that aren't supposed to be changed without administrator privileges, whereas \textit{variable} ones can be altered by regular users \cite{bandel2001special}
 
 The root filesystem is defined then: this should be as small as possible, and it should contain all the required files to boot, reset or repair the system. It must have the directories specified in Table \ref{tab:directories} and installed software should never create new directories on this filesystem \cite{allbery2015filesystem}.
 
@@ -80,17 +80,7 @@ The root filesystem is defined then: this should be as small as possible, and it
 
 From the directories in Table \ref{tab:directories}, \lq\lq \texttt{/usr}, \texttt{/opt} and \texttt{/var} are designed such that they may be located on other partitions or filesystems.\rq\rq{} \cite{allbery2015filesystem}. The \texttt{/usr} hierarchy should include shareable data, that means that every information host-specific should be placed in other directories. About the \texttt{/var} hierarchy, FHS specifies that \lq\lq everything that once went into \texttt{/usr} that is written to during system operation (as opposed to installation and software maintenance) must be in \texttt{/var}.\rq\rq{} \cite{allbery2015filesystem}.
 
-The Hierarchy has some optionally defined places to put the binaries of the installed games, like \texttt{/usr/games}, or \texttt{/usr/local/games}. The difference between the two is that the former is where the package manager installs, while the other is usually where packages compiled locally are installed \cite{blfsdevelopmentteam2017}. Variable data, as usual, should be inserted into the the \texttt{/var} filesystem, under \texttt{/var/games}.
-
-
-\section{Linux Packages}
-\label {sec:packages}
-
-In computer science, package can have multiple meanings, depending on the context being used. A GNU/Linux package means a bundle of files containing the required data to run an application, such as binaries and information about the package. Game packages behave precisely the same as any other software.
-
-To facilitate installing software, GNU/Linux has package managers and most  distributions have their own. Each expects and handle different types of files, but all of them have the common goal of making the installation easier. They download the package, resolve dependencies, copy the needed binaries and execute any post- or pre-configuration required by the system to install a package \cite{linode2017linux}. For example, Debian has \textit{dpkg}, Red Hat has \textit{rpm} and Arch Linux has \textit{pacman} as default package managers.
-
-Another installing method is compiling from scratch. This may be very handy if the user is more advanced or the package is not in the package manager's repository. However, in this case, the user will have to manually handle dependencies, download, compile and do everything else the manager does.
+The Hierarchy has some optionally defined places to put the binaries of the installed games, like \texttt{/usr/games}, or \texttt{/usr/local/games}. The difference between the two is that the former is where the package manager installs, while the other is where packages compiled locally are usually installed \cite{blfsdevelopmentteam2017}. Variable data, as usual, should be inserted into the the \texttt{/var} filesystem, under \texttt{/var/games}.
 
 
 \section{Windows Registry}
@@ -98,23 +88,35 @@ Another installing method is compiling from scratch. This may be very handy if t
 
 According to Wikipedia (\citeyear{wikipedia2017filesystem}), \lq\lq without a file system, information placed in a storage medium would be one large body of data with no way to tell where one piece of information stops and the next begins\rq\rq{}. Just like every Operating System, Windows has a Filesystem that handles how the archives are stored in this platform and also gives a naming convention for those files. On top of that, there is the Windows Registry, that is a system-defined database \cite{windowsregistry2017} that provides configuration data for applications, user preferences, system configurations, among other data \cite{fisher_2017}.
 
-The Registry was created on early versions of Microsoft Windows to replace most of the \texttt{ini} files that contained system information and editing entries that don't relate to the developer's application may lead to a malfunctioning system \cite{microsoft2017registryinfo}. It has a tree structure, with nodes called keys. Each subnode is a subkey and the data entries are called values, and one key (or subkey) can have as many values as it needs \cite{windows2017registrystructure}. Using the Registry is not mandatory for Windows apps, because they might use XML files or being totally portable. \cite{fisher_2017}
+The Registry was created on early versions of Microsoft Windows to replace most of the \texttt{ini} files that contained system information and editing entries that don't relate to the developer's application may lead to a malfunctioning system \cite{microsoft2017registryinfo}. It has a tree structure, with nodes called keys. Each subnode is a subkey, and the data entries are called values, and one key (or subkey) can have as many values as it needs \cite{windows2017registrystructure}. Using the Registry is not mandatory for Windows apps because they might use XML files or be totally portable. \cite{fisher_2017}
+
+
+\section{Linux Packages}
+\label {sec:packages}
+
+In computer science, a package can mean multiple things, depending on the context being used. A GNU/Linux package means a bundle of files containing the required data to run an application, such as binaries and information about the package. Game packages behave precisely the same as any other software.
+
+To facilitate installing software, GNU/Linux has package managers, and most distributions have their own. Each expects and handle different types of files, but all of them have the common goal of making the installation easier. They download the package, resolve dependencies, copy the needed binaries and execute any post- or pre-configuration required by the system to install a package \cite{linode2017linux}. For example, Debian has \textit{dpkg}, Red Hat has \textit{rpm} and Arch Linux has \textit{pacman} as default package managers.
+
+Another installing method is compiling from scratch, that may be very handy if the user has more experience with Linux packages, or the package is not in the package manager's repository. However, in this case, the user will have to manually handle dependencies, download, compile and do everything else the manager does.
 
 
 \section{Wix Toolset}
 \label{sec:wix_toolset}
 
-The Wix Toolset was developed by Microsoft to build installation packages for Windows. Developers may integrate the tools to their build process, in Visual Studio, SharpDevelop, or Makefiles \cite{firegiant2017tutorial}. It works by reading a \texttt{.wix} XML file, that contains all the data of the installer, like targed folder, images, sounds, shortcuts and links \cite{wix2017wikipedia}.
+The Wix Toolset was developed by Microsoft to build installation packages for Windows. Developers may integrate the tools to their build process, in Visual Studio, SharpDevelop, or Makefiles \cite{firegiant2017tutorial}. It works by reading a \texttt{.wix} XML file, that contains all the data of the installer, like target folder, images, sounds, shortcuts, and links \cite{wix2017wikipedia}.
+
+One of the Wix tools, candle, reads and parses the \texttt{wxs} file to create an object file. Light, another Wix tool, will read the \texttt{wxsobj}, that was generated on the previous step, and bundle everything described in the XML into an \texttt{.msi} installer. When the user runs the installer, it will copy all files to their respective locations and create the necessary shortcuts and folders, while registers everything in the Windows Registry, that will manage the installation and removal of the package.
 
 \section{Related Work}
-\label {sec:relate_work}
+\label {sec:related_work}
 
-There are several platforms to share and distribute games online. Amongst the most popular ones, there are Steam, GOG, and Humble Bundle. They have thousands of games, including indies, with the vast support of the gaming community.Another platform, but focused in indies, is Splitplay. Some of them are described here as an inspiration for this work.
+There are several platforms to share and distribute games online. Amongst the most popular ones, there are Steam, GOG, and Humble Bundle. They have thousands of games, including indies, with the vast support of the gaming community.Another platform, but focused on indies, is Splitplay. Some of them are described here as an inspiration for this work.
 
 Steam was announced in 2002 and released in 2003. Valve saw the need that many games needed to run on up to date environment and decided to create a system that would target that issue \cite{wikipedia2017steam}. The website has the purpose to be the store for the platform, while the system is installed on the player's machine and needed to play the games made available by them. Today, they have a vast community, cross-platform (Linux, Mac, mobile devices, and consoles) system with many games and extra content for them \cite{steam2017}.
 
 GOG started out with the name \textit{Good Old Games} trying to provide DRM free games to people. It was released in 2008 and has been active ever since (with a brief down period in September 2010). Since March 2012, it has been rebranded, and independent games have been added to their library \cite{wikipedia2017gog}. They also have a system, like Steam, but this one is not required to run the games. It was built though to provide easy sharing and buying of games, among other things \cite{gog2017}.
 
-Humble Bundle is a platform that provides a bundle of games (books, software and other things) to the public at meager prices. Part of their profit is destined to charity (the buyer can also choose where their money goes), and they have already raised more than 98 million dollars for that purpose \cite{humblebundle2017}. They also provide a store with games at regular and, sometimes, dicounted prices.
+Humble Bundle is a platform that provides a bundle of games (books, software and other things) to the public at meager prices. Part of their profit is destined to charity (the buyer can also choose where their money goes), and they have already raised more than 98 million dollars for that purpose \cite{humblebundle2017}. They also provide a store with games at regular and, sometimes, discounted prices.
 
-Splitplay is a Brazilian platform specialized in indie games. They realized that several indie developers couldn't bring forth their games and decided to create a place where those would be publicized them in their own platform. Splitplay allows developers to send their games complete or incomplete (as a project), they can be free or paid. The site creators personally overview the submissions and don't charge developers \cite{splitplay2017}. This is different from the idea of this project because it gives visualization to all indie games whereas the project gives visibility to the results developed in the University and proposes a game project template.
+Splitplay is a Brazilian platform specialized in indie games. They realized that several indie developers couldn't bring forth their games and decided to create a place where those would be publicized them in their platform. Splitplay allows developers to send their games complete or incomplete (as a project), they can be free or paid. The site creators personally overview the submissions and don't charge developers \cite{splitplay2017}. This platform is different from the idea of this project because it gives visualization to all indie games whereas the project provides visibility to the results developed in the University and proposes a game project template.
